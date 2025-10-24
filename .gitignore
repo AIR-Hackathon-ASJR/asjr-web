@@ -1,3 +1,6 @@
+.pnp.*
+.yarn/*
+
 # build output
 dist/
 docs/
