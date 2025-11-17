@@ -10,6 +10,10 @@ import WhatWeDo01 from '../assets/images/home/what-we-do-01.png'
 
 //Phosphor icons
 import GraduationCap from "phosphor-astro/GraduationCap.astro";
+import ChatsTeardrop from "phosphor-astro/ChatsTeardrop.astro";
+import SpeakerHigh from "phosphor-astro/SpeakerHigh.astro";
+import HandShake from "phosphor-astro/HandShake.astro";
+import SealCheck from "phosphor-astro/SealCheck.astro";
 
 const baseUrl = import.meta.env.BASE_URL;
 ---
@@ -87,28 +91,28 @@ const baseUrl = import.meta.env.BASE_URL;
             </p>
           </li>
           <li>
-            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <div class="card-icon"><ChatsTeardrop class="icon" /></div>
             <label>Communication</label>
             <p>
               To communicate our views and engage in community discussions.
             </p>
           </li>
           <li>
-            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <div class="card-icon"><SpeakerHigh class="icon" /></div>
             <label>Advocacy</label>
             <p>
               To be a voice of change.
             </p>
           </li>
           <li>
-            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <div class="card-icon"><HandShake class="icon" /></div>
             <label>Collaboration</label>
             <p>
               To communicate our views and engage in community discussions.
             </p>
           </li>
           <li>
-            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <div class="card-icon"><SealCheck class="icon" /></div>
             <label>Accountability</label>
             <p>
               To ensure accountability.
@@ -183,7 +187,7 @@ const baseUrl = import.meta.env.BASE_URL;
             <div class="card-list-content">
               <label>Rights Education & Advocacy</label>
               <p>
-                Educating our community about legal rights, system navigation, and advocacy strategies. 
+                Educating our community about legal rights, system navigation, and advocacy strategies.
               </p>
             </div>
           </li>
@@ -191,31 +195,30 @@ const baseUrl = import.meta.env.BASE_URL;
       </div>
     </div>
   </section>
-  
-  <div class='page-container'>
 
-    <!-- News Section -->
-    <section class='news'>
-      <mdc-text type='heading-large-medium' tagname='h2'>Latest News</mdc-text>
-      <div class='news-grid'>
-        {
-          Array.from({ length: 3 }).map(() => (
-            <mdc-card card-title='CAFA (Counsel at First Appearance)' variant='border'>
-              <mdc-text slot='body' type='body-small-regular' tagname='p'>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla facilisi.
-              </mdc-text>
-            </mdc-card>
-          ))
-        }
-        <mdc-button>See more →</mdc-button>
-      </div>
-    </section>
+  <!-- Latest News -->
+  <section class="section latest-news">
+    <div class="inner-container">
+      <h2>Latest news</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate elementum lorem, non varius libero porta in. Aenean molestie molestie accumsan. Nam feugiat, risus sit amet ornare tristique, massa mauris vehicula dolor, sed ultricies mauris nulla vitae nunc. Aliquam nunc lacus, congue nec elit quis, ultrices dapibus tellus.
 
-    <!-- Join Us Section -->
-    <section class='join-us'>
+          <mdc-buttonlink
+              size="40"
+              href=""
+              rel="noopener noreferrer">
+              View latest news →
+              </mdc-buttonlink>
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact / Get Invovled Form -->
+  <section class="section secondary get-involved">
+    <div class="inner-container">
       <GetInvolvedForm />
-    </section>
-  </div>
+    </div>
+  </section>
 </Layout>
 
 <script>

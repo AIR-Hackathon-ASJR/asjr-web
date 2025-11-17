@@ -186,12 +186,12 @@ img {
 }
 
 .section.accent, .section-seek-help.accent {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
   color: var(--mds-color-theme-inverted-text-primary-normal);
   background-color: var(--mds-color-theme-background-accent-normal);
+}
+
+.section.secondary {
+  background-color: var(--mds-color-theme-background-solid-secondary-normal);
 }
 
 .section .inner-container {
@@ -240,7 +240,7 @@ img {
   display: flex;
   flex-direction: column;
 
-  margin: 120px 0;
+  margin: 120px 0 0 0;
 }
 
 /* Home or Landing Page */

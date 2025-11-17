@@ -3,9 +3,46 @@
 .get-involved-form {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
   padding: 3.75rem;
+  gap: 2rem;
   background: var(--mds-color-bg-surface-default, #ffffff);
+  border-radius: 1rem;
+}
+
+.get-involved-list {
+  display: flex;
+  flex-direction: column;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1rem;
+
+      .get-invovled-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+
+        background-color: var(--mds-color-theme-background-accent-normal);
+
+        border-radius: 100%;
+        padding: 0.5rem;
+        color: var(--mds-color-theme-inverted-text-primary-normal);
+      }
+    }
+  }
 }
 
 .form-header {
@@ -45,8 +82,7 @@
 }
 
 .newsletter-form {
-  width: 100%;
-  margin-top: 2.5rem;
+  margin-top: 1rem;
 }
 
 .newsletter-form fieldset {
