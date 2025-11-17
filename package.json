@@ -15,7 +15,8 @@
     "@momentum-design/tokens": "^0.8.0",
     "@phosphor-icons/react": "^2.1.10",
     "astro": "^5.15.8",
-    "astro-navbar": "^2.4.0"
+    "astro-navbar": "^2.4.0",
+    "phosphor-astro": "^2.1.0"
   },
   "packageManager": "yarn@4.10.3",
   "devDependencies": {

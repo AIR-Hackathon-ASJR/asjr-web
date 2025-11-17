@@ -2,12 +2,20 @@
 import Layout from '../layouts/Layout.astro';
 import GetInvolvedForm from '../components/shared/Form/GetInvolvedForm.astro';
 
+import { Image } from 'astro:assets';
+import HomeHero from '../assets/images/home/home-hero.png'
+import WhoWeAre01 from '../assets/images/home/who-we-are-01.png'
+import WhoWeAre02 from '../assets/images/home/who-we-are-02.png'
+
+//Phosphor icons
+import GraduationCap from "phosphor-astro/GraduationCap.astro";
+
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <script>
-  import '@momentum-design/components/dist/components/banner/index.js';
   import '@momentum-design/components/dist/components/button/index.js';
+  import '@momentum-design/components/dist/components/buttonlink/index.js';
   import '@momentum-design/components/dist/components/card/index.js';
   import '@momentum-design/components/dist/components/input/index.js';
   import '@momentum-design/components/dist/components/icon/index.js';
@@ -15,92 +23,115 @@ const baseUrl = import.meta.env.BASE_URL;
 </script>
 
 <Layout title='Advocates for Social Justice Reform'>
-  <mdc-banner class='banner'>
-    <mdc-text type='body-large-regular' slot='content'>Are you arrested or detained?</mdc-text>
-    <mdc-button slot='content' inverted> Seek help →</mdc-button>
-  </mdc-banner>
-  <div class='page-container'>
-    <div class='hero-container'>
-      <!-- Hero Section -->
-      <section class='hero'>
-        <mdc-text type='heading-xlarge-bold' tagname='h1'>
-          Justice with Compassion.<br />Support at Every Step.
-        </mdc-text>
-        <mdc-text type='body-large-regular' tagname='p' class='hero-subtext'>
-          We advocate for a fairer legal system, ensuring that every individual receives
-          compassionate and competent support throughout the criminal legal process.
-        </mdc-text>
-        <mdc-button size='40'>Learn more →</mdc-button>
-      </section>
+  <!-- Hero -->
+  <section class="section hero">
+    <div class="inner-container">
+      <h1>
+        Justice with compassion. Support at every step.
+      </h1>
+      <p>
+        We advocate for a fairer legal system, ensuring that every individual receives compassionate and competent support throughout the criminal legal process.
 
-      <!-- Hero Image -->
-      <section class='hero-image'>
-        <img
-          src={`${baseUrl}images/hero/hero-protest.jpg`}
-          alt='Advocates holding signs for social justice'
-        />
-      </section>
+        <mdc-buttonlink
+            size="40"
+            href=""
+            rel="noopener noreferrer">
+            Learn more →
+            </mdc-buttonlink>
+      </p>
+
+      <Image src={HomeHero} alt="A crowd of people holding signs outside protesting for social justice." />
     </div>
-
-    <!-- Who We Are -->
-    <div class='who-we-are-container'>
-      <section class='who-we-are'>
-        <section class='text-on-left'>
-          <mdc-text class='heading-tag' tagname='span'>Who we are</mdc-text>
-          <mdc-text class='heading-text' type='heading-large-medium' tagname='h2'>
+  </section>
+  
+  <!-- Who we are -->
+  <section class="section who-we-are">
+    <div class="inner-container overview">
+      <!-- Overview -->
+      <div class="section-left">
+        <div class="section-title">
+          <h2 class="pre-header">Who we are</h2>
+          <p class="sub-header">
             Together, we're building a fairer and more humane justice system.
-          </mdc-text>
-          <mdc-text type='body-large-regular' tagname='p' class='who-description'>
-            Advocates for Social Justice Reform (ASJR) is a volunteer-run coalition dedicated to
-            transforming the criminal legal system in Travis County.
-          </mdc-text>
-          <mdc-text type='body-large-regular' tagname='p' class='who-description'>
-            We work to ensure that every person receives fair representation, compassionate support,
-            and dignity at every step of the process.
-          </mdc-text>
-          <mdc-button size='40'>Learn more →</mdc-button>
-        </section>
-        <section class='image-on-right'>
-          <img
-            src={`${baseUrl}images/about/about-1.jpg`}
-            alt='Advocates for Social Justice Reform team members smiling'
-          />
-          <img
-            src={`${baseUrl}images/about/about-2.jpg`}
-            alt='Advocates for Social Justice Reform team members at a protest'
-          />
-        </section>
-      </section>
+          </p>
+        </div>
+        <p>
+          Advocates for Social Justice Reform (ASJR) is a volunteer-run coalition dedicated to transforming the criminal legal system in Travis County.
+        </p>
+        <p>
+          We work to ensure that every person receives fair representation, compassionate support, and dignity at every step of the process.
 
-      <!-- Values Section -->
-      <section class='values'>
-        <mdc-card card-title='Education'>
-          <mdc-text slot='body' type='body-midsize-regular' tagname='span'>
-            To educate ourselves and our communities about social justice issues.
-          </mdc-text>
-        </mdc-card>
-        <mdc-card card-title='Communication'>
-          <mdc-text slot='body' type='body-midsize-regular' tagname='span'>
-            To educate ourselves and our communities about social justice issues.
-          </mdc-text>
-        </mdc-card>
-        <mdc-card card-title='Advocacy'>
-          <mdc-text slot='body' type='body-midsize-regular' tagname='span'>
-            To be a voice of change in community forums.
-          </mdc-text>
-        </mdc-card>
-        <mdc-card card-title='Collaboration'>
-          <mdc-text slot='body' type='body-midsize-regular' tagname='span'>
-            To listen to and collaborate with stakeholders representing diverse viewpoints.
-          </mdc-text>
-        </mdc-card>
-        <mdc-card card-title='Oversight & Evaluate'>
-          <mdc-text slot='body' type='body-midsize-regular' tagname='p'>
-            To educate ourselves and our communities about social justice issues.
-          </mdc-text>
-        </mdc-card>
-      </section>
+          <mdc-buttonlink
+              size="40"
+              href=""
+              rel="noopener noreferrer">
+              Learn more →
+              </mdc-buttonlink>
+        </p>
+      </div>
+      <div class="section-right">
+        <Image src={WhoWeAre01} alt="A group of visitors standing outside the Travis County Jail." />
+        <Image src={WhoWeAre02} alt="A man and woman holding a sign advocating for social justice reform." />
+      </div>
     </div>
+    <div class="inner-container who-we-are-card-list">
+      <!-- Card List -->
+      <div class="card-list">
+        <ul>
+          <li>
+            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <label>Education</label>
+            <p>
+              To educate ourselves and our communities about social justice issues.
+            </p>
+          </li>
+          <li>
+            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <label>Communication</label>
+            <p>
+              To communicate our views and engage in community discussions.
+            </p>
+          </li>
+          <li>
+            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <label>Advocacy</label>
+            <p>
+              To be a voice of change.
+            </p>
+          </li>
+          <li>
+            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <label>Collaboration</label>
+            <p>
+              To communicate our views and engage in community discussions.
+            </p>
+          </li>
+          <li>
+            <div class="card-icon"><GraduationCap class="icon" /></div>
+            <label>Accountability</label>
+            <p>
+              To ensure accountability.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="section accent what-we-do">
+    <div class="inner-container">
+      <!-- Section Overview -->
+      <div class="section-title">
+          <h2 class="pre-header">What we do</h2>
+          <p class="sub-header">
+            From court to community, creating lasting change.
+          </p>
+      </div>
+    </div>
+  </section>
+  
+  <div class='page-container'>
 
     <!-- Programs Section -->
     <section class='programs'>
@@ -153,201 +184,6 @@ const baseUrl = import.meta.env.BASE_URL;
     </section>
   </div>
 </Layout>
-
-<style scoped>
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    overflow-x: hidden;
-  }
-
-  .banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: var(--mds-color-theme-background-accent-normal, rgb(17, 112, 207));
-    padding: unset;
-    position: fixed;
-  }
-
-  .banner mdc-text {
-    color: var(--mds-color-theme-inverted-text-primary-normal, rgba(255, 255, 255, 0.95));
-  }
-  /* HERO SECTION */
-
-  .hero-container,
-  .who-we-are-container,
-  .programs {
-    width: calc(100% - 40rem); /* account for padding */
-    padding: 7.5rem 20rem;
-  }
-  .hero {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-subtext {
-    margin-bottom: 2rem;
-  }
-  .hero-button {
-    margin-top: 0.75rem;
-  }
-
-  /* HERO IMAGE */
-  .hero-image {
-    width: 100%;
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero-image img {
-    width: 100%;
-    max-width: 72rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    object-fit: cover;
-  }
-
-  /* WHO WE ARE */
-
-  .who-we-are-container {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-  }
-  .who-we-are {
-    display: flex;
-    justify-content: space-between;
-    gap: 2.5rem;
-  }
-
-  .heading-tag {
-    color: var(--color-theme-text-accent-normal, #0353a8);
-    font-size: var(--font-size-body-midsize, 14px);
-    font-style: normal;
-    font-weight: 500;
-    line-height: var(--font-line-height-body-large, 24px); /* 171.429% */
-    text-transform: uppercase;
-  }
-  .heading-text {
-    color: var(--color-theme-text-primary-normal, rgba(0, 0, 0, 0.95));
-    font-size: var(--font-size-heading-xlarge, 40px);
-    font-style: normal;
-    font-weight: 700;
-    line-height: var(--font-line-height-heading-xlarge, 52px); /* 130% */
-  }
-  .text-on-left {
-    width: 100%;
-  }
-  .image-on-right {
-    display: flex;
-    gap: 2.5rem;
-  }
-  .image-on-right img {
-    width: 45%;
-    height: auto;
-    object-fit: contain;
-  }
-  .who-description {
-    margin: 1.75rem auto 2.5rem;
-    max-width: 46rem;
-    color: var(--mds-color-neutral-700, #4b5563);
-  }
-
-  /* VALUES */
-  .values {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1.75rem;
-  }
-
-  .values mdc-card {
-    min-width: unset;
-    --mdc-card-width: 15rem;
-    height: 100%;
-  }
-  /* PROGRAMS */
-  .programs {
-    background: var(--color-theme-background-accent-normal, rgb(17, 112, 207));
-    color: var(--color-theme-inverted-text-primary-normal, rgba(255, 255, 255, 0.95));
-  }
-  .programs-inner {
-    max-width: 72rem;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .program-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-top: 3.5rem;
-  }
-  .horizontal-card {
-    min-width: unset;
-    --mdc-card-width: 24rem;
-  }
-
-  mdc-card::part(body) {
-    background-color: var(--mds-color-theme-solid-primary-normal, rgb(255, 255, 255));
-    color: var(--mds-color-theme-text-primary-normal, rgba(0, 0, 0, 0.95));
-    text-align: left;
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-  }
-
-  /* NEWS */
-  .news {
-    width: 100%;
-    padding: 7rem 1rem;
-    text-align: center;
-  }
-
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    max-width: 72rem;
-    margin: 3rem auto 0;
-  }
-
-  /* JOIN US */
-  .join-us {
-    width: 100%;
-    background: #f9fafb;
-    padding: 7rem 1rem;
-  }
-
-  /* GLOBAL TYPOGRAPHY ADJUSTMENTS */
-  mdc-text[type='heading-xlarge-bold'] {
-    color: var(--color-theme-text-primary-normal, rgba(0, 0, 0, 0.95));
-    text-align: center;
-    font-size: var(--font-size-headline, 72px);
-    font-style: normal;
-    font-weight: 800;
-    line-height: var(--font-line-height-headline-headline, 85px); /* 118.056% */
-  }
-
-  mdc-text[type='heading-large-medium'] {
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
-    line-height: 1.25;
-  }
-
-  mdc-text[type='body-large-regular'],
-  mdc-text[type='body-midsize-regular'] {
-    color: var(--color-theme-text-primary-normal, rgba(0, 0, 0, 0.95));
-    font-size: var(--font-size-body-xlarge, 24px);
-    font-style: normal;
-    font-weight: 400;
-    line-height: var(--font-line-height-body-xlarge, 32px);
-  }
-</style>
 
 <script>
   // Import the components we need
