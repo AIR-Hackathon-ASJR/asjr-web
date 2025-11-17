@@ -1,109 +1,178 @@
 ---
-// Header.astro - Main navigation header using Momentum Design components
-import "./Header.css";
-import SiteNavigation from "../shared/SiteNavigation/SiteNavigation.astro";
+// Header.astro - Main navigation header using Momentum Design app header
+import './Header.css';
+
+import { Image } from 'astro:assets';
+import LogoASJR from '../../assets/images/header/logo-asjr.png';
+import { t, type Lang } from '../../i18n/get';
 
 export interface Props {
   class?: string;
 }
 
-const { class: className = "" } = Astro.props;
+const { class: className = '' } = Astro.props;
 
 // Get current path for active navigation state
 const currentPath = Astro.url.pathname;
 
 // Get base URL from Astro environment
 const baseUrl = import.meta.env.BASE_URL;
+
+// Detect current language from URL
+const lang: Lang = currentPath.startsWith('/es') ? 'es' : 'en';
+const otherLang: Lang = lang === 'en' ? 'es' : 'en';
+const langPrefix = lang === 'es' ? '/es' : '';
+const otherLangPrefix = otherLang === 'es' ? '/es' : '';
+
+// Navigation items with proper base path handling
+const navItems = [
+  { label: t(lang, 'nav.about'), href: `${baseUrl}${langPrefix}/about` },
+  {
+    label: t(lang, 'nav.whatWeDo'),
+    href: `${baseUrl}${langPrefix}/what-we-do`,
+  },
+  {
+    label: t(lang, 'nav.resources'),
+    href: `${baseUrl}${langPrefix}/resources`,
+  },
+  { label: t(lang, 'nav.blog'), href: `${baseUrl}${langPrefix}/blog` },
+  {
+    label: t(lang, 'nav.getInvolved'),
+    href: `${baseUrl}${langPrefix}/get-involved`,
+  },
+];
+
+const seekHelpLink = `${baseUrl}${langPrefix}/resources`;
+const toggleLabel =
+  lang === 'en' ? t(lang, 'toggle.toSpanish') : t(lang, 'toggle.toEnglish');
+const toggleUrl = lang === 'en' ? `${baseUrl}es/` : baseUrl;
 ---
 
 <script>
-  // Import Momentum Design components - only imported once on client side
-  import "@momentum-design/components/dist/components/appheader/index.js";
-  import "@momentum-design/components/dist/components/searchfield/index.js";
-  import "@momentum-design/components/dist/components/button/index.js";
-  import "@momentum-design/components/dist/components/icon/index.js";
-  import "@momentum-design/components/dist/components/link/index.js";
+  // Import Momentum icon component
+  import '@momentum-design/components/dist/components/icon/index.js';
+  import '@momentum-design/components/dist/components/toggle/index.js';
+  import '@momentum-design/components/dist/components/buttonlink/index.js';
+</script>
 
-  // Mobile menu toggle functionality
-  document.addEventListener("astro:page-load", () => {
-    const menuToggle = document.querySelector(".mobile-menu-toggle");
-    const mobileNav = document.querySelector(".mobile-nav");
-    const mobileNavClose = document.querySelector(".mobile-nav-close");
-    const mobileNavOverlay = document.querySelector(".mobile-nav-overlay");
+<header>
+  <nav class="nav-container">
+    <a href={baseUrl} class="nav-logo">
+      <Image src={LogoASJR} alt="Advocates for Social Justice Reform logo" />
+    </a>
 
-    const closeMenu = () => {
-      mobileNav?.classList.remove("mobile-nav--open");
-      menuToggle?.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    };
+    <div class="nav-container-right">
+      <div class="nav-localization-toggle">
+        <a href={toggleUrl}>
+          <mdc-toggle
+            name="toggleLanguage"
+            value={lang === 'es' ? 'true' : 'false'}
+            label={toggleLabel}></mdc-toggle>
+        </a>
+      </div>
 
-    const openMenu = () => {
-      mobileNav?.classList.add("mobile-nav--open");
-      menuToggle?.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
-    };
+      <button class="menu-icon" aria-label="Open menu" aria-expanded="false">
+        <div class="list-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="x-icon" style="display: none;"></div>
+      </button>
 
-    if (menuToggle && mobileNav) {
-      menuToggle.addEventListener("click", () => {
-        const isOpen = mobileNav.classList.contains("mobile-nav--open");
-        isOpen ? closeMenu() : openMenu();
-      });
+      <ul class="nav-menu">
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>
+                <span>{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
 
-      mobileNavClose?.addEventListener("click", closeMenu);
-      mobileNavOverlay?.addEventListener("click", closeMenu);
+  <!-- Seek Help CTA -->
+  <div class="section-seek-help accent">
+    <div class="inner-container-seek-help seek-help-cta">
+      <div class="content-horizontal">
+        {t(lang, 'banner.question')}
+        <mdc-buttonlink
+          size="32"
+          href={seekHelpLink}
+          rel="noopener noreferrer"
+          inverted
+        >
+          {t(lang, 'banner.cta')}
+        </mdc-buttonlink>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuIcon = document.querySelector('.menu-icon');
+  const listIcon = document.querySelector('.list-icon');
+  const xIcon = document.querySelector('.x-icon');
+  const navMenu = document.querySelector('.nav-menu');
+  const navLinks = document.querySelectorAll('.nav-menu li a');
+
+  menuIcon.addEventListener('click', () => {
+    const isExpanded = menuIcon.getAttribute('aria-expanded') === 'true';
+    menuIcon.setAttribute('aria-expanded', !isExpanded);
+    menuIcon.classList.toggle('active');
+    navMenu.classList.toggle('active');
+
+    // Set display property
+    navMenu.style.display = !isExpanded ? 'flex' : '';
+
+    // Toggle icons
+    if (!isExpanded) {
+      // Menu is opening - show x-icon, hide list-icon
+      listIcon.style.display = 'none';
+      xIcon.style.display = 'block';
+    } else {
+      // Menu is closing - show list-icon, hide x-icon
+      listIcon.style.display = 'flex';
+      xIcon.style.display = 'none';
+    }
+
+    // Update aria-label
+    menuIcon.setAttribute(
+      'aria-label',
+      !isExpanded ? 'Close menu' : 'Open menu'
+    );
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      menuIcon.setAttribute('aria-expanded', 'false');
+      menuIcon.classList.remove('active');
+      navMenu.classList.remove('active');
+      navMenu.style.display = '';
+
+      // Reset to list icon
+      listIcon.style.display = 'block';
+      xIcon.style.display = 'none';
+      menuIcon.setAttribute('aria-label', 'Open menu');
+    });
+  });
+
+  // Close menu on browser resize
+  window.addEventListener('resize', () => {
+    const isExpanded = menuIcon.getAttribute('aria-expanded') === 'true';
+    if (isExpanded) {
+      menuIcon.setAttribute('aria-expanded', 'false');
+      menuIcon.classList.remove('active');
+      navMenu.classList.remove('active');
+      navMenu.style.display = '';
+
+      // Reset to list icon
+      listIcon.style.display = 'flex';
+      xIcon.style.display = 'none';
+      menuIcon.setAttribute('aria-label', 'Open menu');
     }
   });
 </script>
-
-<mdc-appheader class={`asjr-header ${className}`}>
-  <!-- Logo Section -->
-  <div slot="leading" class="header-logo">
-    <mdc-link href={baseUrl} class="logo-link" inline>
-      <div class="logo-placeholder" aria-label="ASJR Logo"></div>
-    </mdc-link>
-  </div>
-
-  <!-- Desktop Navigation Section -->
-  <div slot="center" class="header-nav-desktop">
-    <SiteNavigation orientation="horizontal" currentPath={currentPath} />
-  </div>
-
-  <!-- Search and Actions Section -->
-  <div slot="trailing" class="header-actions">
-    <mdc-searchfield
-      placeholder="Search"
-      class="header-search"
-      aria-label="Search"></mdc-searchfield>
-
-    <mdc-button
-      class="mobile-menu-toggle"
-      aria-label="Open menu"
-      aria-expanded="false"
-      prefix-icon="list-menu-light"
-      variant="tertiary"
-    >
-    </mdc-button>
-  </div>
-</mdc-appheader>
-
-<!-- Mobile Navigation Drawer -->
-<div class="mobile-nav">
-  <div class="mobile-nav-content">
-    <div class="mobile-nav-header">
-      <div class="logo-placeholder" aria-label="ASJR Logo"></div>
-      <mdc-button
-        variant="ghost"
-        class="mobile-nav-close"
-        aria-label="Close menu"
-      >
-        <mdc-icon slot="prefix-icon" name="cancel-light" size="20"></mdc-icon>
-      </mdc-button>
-    </div>
-    <SiteNavigation
-      orientation="vertical"
-      currentPath={currentPath}
-      class="mobile-nav-links"
-    />
-  </div>
-  <div class="mobile-nav-overlay"></div>
-</div>
