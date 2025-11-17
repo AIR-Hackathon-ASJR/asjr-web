@@ -21,7 +21,14 @@ const baseUrl = import.meta.env.BASE_URL;
 
 // Detect current language from URL
 const currentPath = Astro.url.pathname;
-const lang: Lang = currentPath.startsWith('/es') ? 'es' : 'en';
+
+// Remove baseUrl to get relative path for language detection
+const relativePath = currentPath.startsWith(baseUrl)
+  ? currentPath.slice(baseUrl.length)
+  : currentPath;
+
+const lang: Lang =
+  relativePath.startsWith('es/') || relativePath.startsWith('es') ? 'es' : 'en';
 ---
 
 <script>
@@ -138,60 +145,52 @@ const lang: Lang = currentPath.startsWith('/es') ? 'es' : 'en';
           <li>
             <Image src={WhatWeDo01} alt="Image" />
             <div class="card-list-content">
-              <label>CAFA (Counsel at First Appearance)</label>
+              <label>{t(lang, 'programs.cafa.title')}</label>
+              <p>{t(lang, 'programs.cafa.description')}</p>
+            </div>
+          </li>
+          <li>
+            <Image src={WhatWeDo01} alt="Image" />
+            <div class="card-list-content">
+              <label>{t(lang, 'programs.publicDefender.title')}</label>
               <p>
-                Everyone deserves a lawyer from their very first court
-                appearance.
+                {t(lang, 'programs.publicDefender.description')}
               </p>
             </div>
           </li>
           <li>
             <Image src={WhatWeDo01} alt="Image" />
             <div class="card-list-content">
-              <label>Public Defender Office Support</label>
+              <label>{t(lang, 'programs.policeOversight.title')}</label>
               <p>
-                We collaborate with public defender offices to strengthen
-                representation for indigent clients.
+                {t(lang, 'programs.policeOversight.description')}
               </p>
             </div>
           </li>
           <li>
             <Image src={WhatWeDo01} alt="Image" />
             <div class="card-list-content">
-              <label>Police Oversight & Accountability</label>
+              <label>{t(lang, 'programs.earlyCaseReview.title')}</label>
               <p>
-                Promoting transparency and community oversight to ensure fair
-                policing practices.
+                {t(lang, 'programs.earlyCaseReview.description')}
               </p>
             </div>
           </li>
           <li>
             <Image src={WhatWeDo01} alt="Image" />
             <div class="card-list-content">
-              <label>Early Case Review & Diversion</label>
+              <label>{t(lang, 'programs.communityPower.title')}</label>
               <p>
-                Identifying options before trial—dismissal, diversion, or
-                reduced charges—to reduce unnecessary incarceration.
+                {t(lang, 'programs.communityPower.description')}
               </p>
             </div>
           </li>
           <li>
             <Image src={WhatWeDo01} alt="Image" />
             <div class="card-list-content">
-              <label>Community Powered Support</label>
+              <label>{t(lang, 'programs.rightsEducation.title')}</label>
               <p>
-                We help families understand the legal process and actively
-                support their loved ones as part of the defense team.
-              </p>
-            </div>
-          </li>
-          <li>
-            <Image src={WhatWeDo01} alt="Image" />
-            <div class="card-list-content">
-              <label>Rights Education & Advocacy</label>
-              <p>
-                Educating our community about legal rights, system navigation,
-                and advocacy strategies.
+                {t(lang, 'programs.rightsEducation.description')}
               </p>
             </div>
           </li>
@@ -217,7 +216,7 @@ const lang: Lang = currentPath.startsWith('/es') ? 'es' : 'en';
   <!-- Contact / Get Invovled Form -->
   <section class="section secondary get-involved">
     <div class="inner-container">
-      <GetInvolvedForm />
+      <GetInvolvedForm lang={lang} />
     </div>
   </section>
 </Layout>

@@ -8,44 +8,60 @@ import { t, type Lang } from '../../i18n/get';
 
 export interface Props {
   class?: string;
+  lang?: 'en' | 'es';
 }
 
-const { class: className = '' } = Astro.props;
-
-// Get current path for active navigation state
+// Get current path and detect language based on leading segment
 const currentPath = Astro.url.pathname;
-
-// Get base URL from Astro environment
 const baseUrl = import.meta.env.BASE_URL;
 
-// Detect current language from URL
-const lang: Lang = currentPath.startsWith('/es') ? 'es' : 'en';
-const otherLang: Lang = lang === 'en' ? 'es' : 'en';
-const langPrefix = lang === 'es' ? '/es' : '';
-const otherLangPrefix = otherLang === 'es' ? '/es' : '';
+// Remove baseUrl to get relative path for language detection
+const relativePath = currentPath.startsWith(baseUrl)
+  ? currentPath.slice(baseUrl.length)
+  : currentPath;
 
-// Navigation items with proper base path handling
+const inferredLang: 'en' | 'es' =
+  relativePath.startsWith('es/') || relativePath.startsWith('es') ? 'es' : 'en';
+
+const { class: className = '', lang = inferredLang } = Astro.props as Props;
+
+const isSpanish = lang === 'es';
+
+// Helper to strip or add /es prefix for counterpart navigation
+function computeCounterpart(path: string) {
+  const relPath = path.startsWith(baseUrl) ? path.slice(baseUrl.length) : path;
+  const isEs = relPath.startsWith('es/') || relPath.startsWith('es');
+
+  let newRelPath;
+  if (isEs) {
+    newRelPath = relPath.replace(/^es\/?/, '') || '';
+  } else {
+    newRelPath = relPath ? `es/${relPath}` : 'es/';
+  }
+
+  return `${baseUrl}${newRelPath}`;
+}
+const counterpartPath = computeCounterpart(currentPath);
+
+// Navigation items (translated labels)
 const navItems = [
-  { label: t(lang, 'nav.about'), href: `${baseUrl}${langPrefix}/about` },
+  { key: 'nav.about', href: `${baseUrl}${isSpanish ? 'es/' : ''}about` },
   {
-    label: t(lang, 'nav.whatWeDo'),
-    href: `${baseUrl}${langPrefix}/what-we-do`,
+    key: 'nav.whatWeDo',
+    href: `${baseUrl}${isSpanish ? 'es/' : ''}what-we-do`,
   },
   {
-    label: t(lang, 'nav.resources'),
-    href: `${baseUrl}${langPrefix}/resources`,
+    key: 'nav.resources',
+    href: `${baseUrl}${isSpanish ? 'es/' : ''}resources`,
   },
-  { label: t(lang, 'nav.blog'), href: `${baseUrl}${langPrefix}/blog` },
+  { key: 'nav.blog', href: `${baseUrl}${isSpanish ? 'es/' : ''}blog` },
   {
-    label: t(lang, 'nav.getInvolved'),
-    href: `${baseUrl}${langPrefix}/get-involved`,
+    key: 'nav.getInvolved',
+    href: `${baseUrl}${isSpanish ? 'es/' : ''}get-involved`,
   },
 ];
 
-const seekHelpLink = `${baseUrl}${langPrefix}/resources`;
-const toggleLabel =
-  lang === 'en' ? t(lang, 'toggle.toSpanish') : t(lang, 'toggle.toEnglish');
-const toggleUrl = lang === 'en' ? `${baseUrl}es/` : baseUrl;
+const seekHelpLink = `${baseUrl}${isSpanish ? 'es/' : ''}resources`;
 ---
 
 <script>
@@ -55,20 +71,23 @@ const toggleUrl = lang === 'en' ? `${baseUrl}es/` : baseUrl;
   import '@momentum-design/components/dist/components/buttonlink/index.js';
 </script>
 
-<header>
+<header data-base-url={baseUrl}>
   <nav class="nav-container">
     <a href={baseUrl} class="nav-logo">
-      <Image src={LogoASJR} alt="Advocates for Social Justice Reform logo" />
+      <Image src={LogoASJR} alt={t(lang, 'logo.altText')} />
     </a>
 
     <div class="nav-container-right">
       <div class="nav-localization-toggle">
-        <a href={toggleUrl}>
-          <mdc-toggle
-            name="toggleLanguage"
-            value={lang === 'es' ? 'true' : 'false'}
-            label={toggleLabel}></mdc-toggle>
-        </a>
+        <mdc-toggle
+          name="lang-toggle"
+          value={lang}
+          label={isSpanish
+            ? t('es', 'toggle.toEnglish')
+            : t('en', 'toggle.toSpanish')}
+          checked={isSpanish ? true : undefined}
+          aria-label={isSpanish ? 'Switch to English' : 'Cambiar a Español'}
+        ></mdc-toggle>
       </div>
 
       <button class="menu-icon" aria-label="Open menu" aria-expanded="false">
@@ -85,7 +104,7 @@ const toggleUrl = lang === 'en' ? `${baseUrl}es/` : baseUrl;
           navItems.map((item) => (
             <li>
               <a href={item.href}>
-                <span>{item.label}</span>
+                <span>{t(lang, item.key)}</span>
               </a>
             </li>
           ))
@@ -113,66 +132,102 @@ const toggleUrl = lang === 'en' ? `${baseUrl}es/` : baseUrl;
 </header>
 
 <script>
-  const menuIcon = document.querySelector('.menu-icon');
-  const listIcon = document.querySelector('.list-icon');
-  const xIcon = document.querySelector('.x-icon');
-  const navMenu = document.querySelector('.nav-menu');
-  const navLinks = document.querySelectorAll('.nav-menu li a');
+  (() => {
+    const menuIcon = document.querySelector('.menu-icon') as HTMLElement | null;
+    const listIcon = document.querySelector('.list-icon') as HTMLElement | null;
+    const xIcon = document.querySelector('.x-icon') as HTMLElement | null;
+    const navMenu = document.querySelector('.nav-menu') as HTMLElement | null;
+    const navLinks = document.querySelectorAll('.nav-menu li a');
+    const langToggle = document.querySelector(
+      'mdc-toggle[name="lang-toggle"]'
+    ) as HTMLElement | null;
 
-  menuIcon.addEventListener('click', () => {
-    const isExpanded = menuIcon.getAttribute('aria-expanded') === 'true';
-    menuIcon.setAttribute('aria-expanded', !isExpanded);
-    menuIcon.classList.toggle('active');
-    navMenu.classList.toggle('active');
+    // Language toggle navigation
+    if (langToggle) {
+      // Ensure toggle state reflects current language on page load
+      const header = document.querySelector('header');
+      const baseUrl = header?.getAttribute('data-base-url') || '/';
+      const current = window.location.pathname;
+      const relativePath = current.startsWith(baseUrl)
+        ? current.slice(baseUrl.length)
+        : current;
+      const isSpanish =
+        relativePath.startsWith('es/') || relativePath.startsWith('es');
 
-    // Set display property
-    navMenu.style.display = !isExpanded ? 'flex' : '';
+      // Set checked state explicitly after component loads
+      if (isSpanish) {
+        langToggle.setAttribute('checked', 'true');
+      } else {
+        langToggle.removeAttribute('checked');
+      }
 
-    // Toggle icons
-    if (!isExpanded) {
-      // Menu is opening - show x-icon, hide list-icon
-      listIcon.style.display = 'none';
-      xIcon.style.display = 'block';
-    } else {
-      // Menu is closing - show list-icon, hide x-icon
-      listIcon.style.display = 'flex';
-      xIcon.style.display = 'none';
+      langToggle.addEventListener('click', () => {
+        // Check current state before navigation
+        const curr = window.location.pathname;
+        const relPath = curr.startsWith(baseUrl)
+          ? curr.slice(baseUrl.length)
+          : curr;
+        const isEs = relPath.startsWith('es/') || relPath.startsWith('es');
+
+        let newPath;
+        if (isEs) {
+          // Going to English: remove 'es/' prefix
+          newPath = relPath.replace(/^es\/?/, '') || '';
+        } else {
+          // Going to Spanish: add 'es/' prefix
+          newPath = relPath ? `es/${relPath}` : 'es/';
+        }
+
+        // Construct final URL with baseUrl
+        const target = `${baseUrl}${newPath}`;
+        window.location.href = target;
+      });
     }
 
-    // Update aria-label
-    menuIcon.setAttribute(
-      'aria-label',
-      !isExpanded ? 'Close menu' : 'Open menu'
-    );
-  });
+    if (!menuIcon || !listIcon || !xIcon || !navMenu) return;
 
-  navLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      menuIcon.setAttribute('aria-expanded', 'false');
-      menuIcon.classList.remove('active');
-      navMenu.classList.remove('active');
-      navMenu.style.display = '';
-
-      // Reset to list icon
-      listIcon.style.display = 'block';
-      xIcon.style.display = 'none';
-      menuIcon.setAttribute('aria-label', 'Open menu');
+    menuIcon.addEventListener('click', () => {
+      const isExpanded = menuIcon.getAttribute('aria-expanded') === 'true';
+      menuIcon.setAttribute('aria-expanded', (!isExpanded).toString());
+      menuIcon.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      navMenu.style.display = !isExpanded ? 'flex' : '';
+      if (!isExpanded) {
+        listIcon.style.display = 'none';
+        xIcon.style.display = 'block';
+      } else {
+        listIcon.style.display = 'flex';
+        xIcon.style.display = 'none';
+      }
+      menuIcon.setAttribute(
+        'aria-label',
+        !isExpanded ? 'Close menu' : 'Open menu'
+      );
     });
-  });
 
-  // Close menu on browser resize
-  window.addEventListener('resize', () => {
-    const isExpanded = menuIcon.getAttribute('aria-expanded') === 'true';
-    if (isExpanded) {
-      menuIcon.setAttribute('aria-expanded', 'false');
-      menuIcon.classList.remove('active');
-      navMenu.classList.remove('active');
-      navMenu.style.display = '';
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        menuIcon.setAttribute('aria-expanded', 'false');
+        menuIcon.classList.remove('active');
+        navMenu.classList.remove('active');
+        navMenu.style.display = '';
+        listIcon.style.display = 'flex';
+        xIcon.style.display = 'none';
+        menuIcon.setAttribute('aria-label', 'Open menu');
+      });
+    });
 
-      // Reset to list icon
-      listIcon.style.display = 'flex';
-      xIcon.style.display = 'none';
-      menuIcon.setAttribute('aria-label', 'Open menu');
-    }
-  });
+    window.addEventListener('resize', () => {
+      const isExpanded = menuIcon.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        menuIcon.setAttribute('aria-expanded', 'false');
+        menuIcon.classList.remove('active');
+        navMenu.classList.remove('active');
+        navMenu.style.display = '';
+        listIcon.style.display = 'flex';
+        xIcon.style.display = 'none';
+        menuIcon.setAttribute('aria-label', 'Open menu');
+      }
+    });
+  })();
 </script>

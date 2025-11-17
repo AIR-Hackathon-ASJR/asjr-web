@@ -9,41 +9,47 @@ import { t, type Lang } from '../../i18n/get';
 // Footer.astro - Main footer component
 export interface Props {
   class?: string;
+  lang?: 'en' | 'es';
 }
 
 const currentYear = new Date().getFullYear();
 
-const { class: className = '' } = Astro.props;
-
-// Get current path for active navigation state
+// Get current path and detect language based on leading segment
 const currentPath = Astro.url.pathname;
-
-// Get base URL from Astro environment
 const baseUrl = import.meta.env.BASE_URL;
 
-// Detect current language from URL
-const lang: Lang = currentPath.startsWith('/es') ? 'es' : 'en';
-const langPrefix = lang === 'es' ? '/es' : '';
+// Remove baseUrl to get relative path for language detection
+const relativePath = currentPath.startsWith(baseUrl)
+  ? currentPath.slice(baseUrl.length)
+  : currentPath;
+
+const inferredLang: 'en' | 'es' =
+  relativePath.startsWith('es/') || relativePath.startsWith('es') ? 'es' : 'en';
+
+const { class: className = '', lang = inferredLang } = Astro.props;
+
+const isSpanish = lang === 'es';
+const langPrefix = isSpanish ? 'es/' : '';
 
 // Navigation items with proper base path handling
 const navItems = [
-  { label: t(lang, 'nav.about'), href: `${baseUrl}${langPrefix}/about` },
+  { label: t(lang, 'nav.about'), href: `${baseUrl}${langPrefix}about` },
   {
     label: t(lang, 'nav.whatWeDo'),
-    href: `${baseUrl}${langPrefix}/what-we-do`,
+    href: `${baseUrl}${langPrefix}what-we-do`,
   },
   {
     label: t(lang, 'nav.resources'),
-    href: `${baseUrl}${langPrefix}/resources`,
+    href: `${baseUrl}${langPrefix}resources`,
   },
-  { label: t(lang, 'nav.blog'), href: `${baseUrl}${langPrefix}/blog` },
+  { label: t(lang, 'nav.blog'), href: `${baseUrl}${langPrefix}blog` },
   {
     label: t(lang, 'nav.getInvolved'),
-    href: `${baseUrl}${langPrefix}/get-involved`,
+    href: `${baseUrl}${langPrefix}get-involved`,
   },
 ];
 
-const seekHelpLink = `${baseUrl}${langPrefix}/resources`;
+const seekHelpLink = `${baseUrl}${langPrefix}resources`;
 ---
 
 <script>
