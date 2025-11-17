@@ -126,7 +126,11 @@
   .form-row {
     flex-direction: column;
   }
-  
+
+  .get-involved-form {
+    padding: 1.5rem;
+  }
+
   .newsletter-form mdc-button {
     width: 100%;
   }
