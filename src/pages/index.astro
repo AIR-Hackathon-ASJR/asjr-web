@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import HomeHero from '../assets/images/home/home-hero.png'
 import WhoWeAre01 from '../assets/images/home/who-we-are-01.png'
 import WhoWeAre02 from '../assets/images/home/who-we-are-02.png'
+import WhatWeDo01 from '../assets/images/home/what-we-do-01.png'
 
 //Phosphor icons
 import GraduationCap from "phosphor-astro/GraduationCap.astro";
@@ -128,38 +129,70 @@ const baseUrl = import.meta.env.BASE_URL;
             From court to community, creating lasting change.
           </p>
       </div>
+
+      <!-- Card List -->
+      <div class="card-list">
+        <ul>
+          <li>
+            <Image src={WhatWeDo01} alt="Image" />
+            <div class="card-list-content">
+              <label>CAFA (Counsel at First Appearance)</label>
+              <p>
+                Everyone deserves a lawyer from their very first court appearance.
+              </p>
+            </div>
+          </li>
+          <li>
+            <Image src={WhatWeDo01} alt="Image" />
+            <div class="card-list-content">
+              <label>Public Defender Office Support</label>
+              <p>
+                We collaborate with public defender offices to strengthen representation for indigent clients.
+              </p>
+            </div>
+          </li>
+          <li>
+            <Image src={WhatWeDo01} alt="Image" />
+            <div class="card-list-content">
+              <label>Police Oversight & Accountability</label>
+              <p>
+                Promoting transparency and community oversight to ensure fair policing practices.
+              </p>
+            </div>
+          </li>
+          <li>
+            <Image src={WhatWeDo01} alt="Image" />
+            <div class="card-list-content">
+              <label>Early Case Review & Diversion</label>
+              <p>
+                Identifying options before trial—dismissal, diversion, or reduced charges—to reduce unnecessary incarceration.
+              </p>
+            </div>
+          </li>
+          <li>
+            <Image src={WhatWeDo01} alt="Image" />
+            <div class="card-list-content">
+              <label>Community Powered Support</label>
+              <p>
+                We help families understand the legal process and actively support their loved ones as part of the defense team.
+              </p>
+            </div>
+          </li>
+          <li>
+            <Image src={WhatWeDo01} alt="Image" />
+            <div class="card-list-content">
+              <label>Rights Education & Advocacy</label>
+              <p>
+                Educating our community about legal rights, system navigation, and advocacy strategies. 
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
   
   <div class='page-container'>
-
-    <!-- Programs Section -->
-    <section class='programs'>
-      <div class='programs-inner'>
-        <mdc-text type='heading-large-medium' tagname='h2'>
-          From court to community, creating lasting change.
-        </mdc-text>
-        <div class='program-grid'>
-          {
-            Array.from({ length: 6 }).map(() => (
-              <mdc-card
-                card-title='CAFA (Counsel at First Appearance)'
-                image-src={`${baseUrl}images/what-we-do/cafa.jpg`}
-                image-alt='CAFA'
-                variant='border'
-                orientation='horizontal'
-                class='horizontal-card'
-              >
-                <mdc-text slot='body' type='body-small-regular' tagname='p'>
-                  Legal support at first appearance.
-                </mdc-text>
-                <mdc-button slot='footer-button-secondary'>Learn more →</mdc-button>
-              </mdc-card>
-            ))
-          }
-        </div>
-      </div>
-    </section>
 
     <!-- News Section -->
     <section class='news'>

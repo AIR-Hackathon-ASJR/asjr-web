@@ -20,7 +20,7 @@
 
 /* Root element typography setup */
 :root {
-  --max-width: 1024px;
+  --max-width: 1280px;
   --min-width: 320px;
 
   --content-padding: 24px;
@@ -275,6 +275,7 @@ img {
   border-radius: 40px;
 }
 
+/* Home - Who We Are */
 .section.who-we-are .inner-container {
   display: flex;
   flex-direction: row;
@@ -354,6 +355,46 @@ img {
   padding: 24px;
 }
 
+/* Home - What We Do */
+.section.what-we-do .inner-container {  
+
+  padding: 120px 0;
+
+  .card-list label {
+    font-size: 20px;
+  }
+  
+  .card-list ul li {
+    color: var(--mds-color-theme-text-primary-normal);
+    padding: 0;
+    
+    border: 1px solid var(--mds-color-theme-outline-primary-normal);
+    border-radius: 8px;
+    flex-basis: 25%;
+
+    flex-direction: row;
+  }
+
+  .card-list ul li img {
+    border-radius: 7px 0 0 7px;
+
+    width: 40%;
+  }
+
+  .card-list ul li .card-list-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 8px;
+    padding: 24px;
+
+    width: 60%;
+
+    word-wrap: break-word;
+  }
+}
+
 /* Desktop - 1024px to 1440px */
 @media (min-width: 1024px) and (max-width: 1440px) {  
   .section.hero p {
@@ -362,6 +403,21 @@ img {
 
   .section.hero h1 {
     font-size: 52px;
+  }
+
+  .section.what-we-do .inner-container {    
+    .card-list ul li {
+      flex-basis: 40%;
+  
+      flex-direction: column;
+    }
+  
+    .card-list ul li img {
+      border-radius: 7px 7px 0 0;
+  
+      width: 100%;
+      height: 348px;
+    }
   }
 }
 
@@ -383,6 +439,21 @@ img {
   .section.hero h1 {
     font-size: 40px;
   }
+
+  .section.what-we-do .inner-container {    
+    .card-list ul li {
+      flex-basis: 50%;
+  
+      flex-direction: column;
+    }
+  
+    .card-list ul li img {
+      border-radius: 7px 7px 0 0;
+  
+      width: 100%;
+      height: 348px;
+    }
+  }  
 }
 
 /* Mobile Large - 576px to 767px */
@@ -402,6 +473,22 @@ img {
 
   .section.hero h1 {
     font-size: 32px;
+  }
+
+  .section.what-we-do .inner-container {    
+    padding: 60px 0;
+    .card-list ul li {
+      flex-basis: 50%;
+  
+      flex-direction: column;
+    }
+  
+    .card-list ul li img {
+      border-radius: 7px 7px 0 0;
+  
+      width: 100%;
+      height: 348px;
+    }
   }
 }
 
@@ -426,6 +513,33 @@ img {
   .card-list ul {
     flex-direction: column;
     width: 100%;
+  }
+
+  .section.what-we-do .inner-container {
+    .card-list ul li {
+      flex-basis: 0;  
+      flex-direction: column;
+
+      max-height: 600px;
+
+      gap: 0;
+    }
+  
+    .card-list ul li img {
+      border-radius: 7px 7px 0 0;
+  
+      width: 100%;
+      height: 348px;
+    }
+
+    .card-list ul li .card-list-content {
+      height: auto;
+      width: 85%;
+    }
+  }
+
+  .section.what-we-do .inner-container {
+    padding: 60px 0;
   }
 }
 
@@ -464,6 +578,10 @@ img {
     display: flex;
     flex-direction: column;
     gap: 16px;
+  }
+
+  .section.what-we-do .inner-container {
+    padding: 60px 0;
   }
 }
 
