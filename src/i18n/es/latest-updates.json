@@ -5,16 +5,14 @@
 
     "latestUpdates.article.backButton": "← Volver a las últimas noticias",
 
-    "latestUpdates.article20251112.title": "Título del artículo 1",
-    "latestUpdates.article20251112.subtitle": "Subtítulo del artículo 1",
+    "latestUpdates.article20251112.title": "Cinco años por delante, retos por delante",
+    "latestUpdates.article20251112.subtitle": "Declaraciones del jefe Adeola sobre el aumento de personal, la escasez de recursos y la urgente necesidad de un mayor apoyo a los defensores.",
     "latestUpdates.article20251112.author": "Nombre del autor",
     "latestUpdates.article20251112.date": "Noviembre 12, 2025",
-    "latestUpdates.article20251112.summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dapibus imperdiet felis, tincidunt iaculis orci. Phasellus sed porttitor elit. Cras vehicula, eros sed vehicula scelerisque, massa tellus maximus justo, vitae imperdiet ante sem eu mauris. Nam congue libero in ultricies volutpat. Suspendisse dapibus eu massa a convallis.",
-    "latestUpdates.article20251112.thumbnailImageAlt": "Imagen del artículo 1",
+    "latestUpdates.article20251112.summary": "Adeola, jefa de la Oficina del Defensor Público, habló sobre los importantes avances logrados en los últimos cinco años, incluyendo el aumento de personal y la importancia de las comparecencias iniciales presenciales de los clientes. Posteriormente, el grupo se centró en los desafíos del sistema de justicia penal, como los problemas de financiación, la gestión de casos y la necesidad de mayor apoyo y recursos para los defensores públicos del condado de Travis.",
+    "latestUpdates.article20251112.thumbnailImageAlt": "Una multitud de personas sosteniendo carteles en una manifestación por la bondad en Austin, Texas.",
     "latestUpdates.article20251112.link": "Leer artículo →",
 
-    "latestUpdates.article20251112.details.paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dapibus imperdiet felis, tincidunt iaculis orci. Phasellus sed porttitor elit. Cras vehicula, eros sed vehicula scelerisque, massa tellus maximus justo, vitae imperdiet ante sem eu mauris. Nam congue libero in ultricies volutpat. Suspendisse dapibus eu massa a convallis. Sed gravida tortor ac risus consectetur euismod. In congue viverra est sed laoreet. Fusce eu lorem a sem ultrices eleifend. Nullam eleifend, neque a facilisis hendrerit, nisl turpis euismod neque, eget finibus tortor magna ut sem. Sed volutpat purus vel urna convallis, vel gravida odio interdum. Donec at nisl a sapien tincidunt interdum. Aenean eu nisi dui.",
-    "latestUpdates.article20251112.details.paragraph2": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse blandit, sapien ut maximus elementum, justo libero venenatis mi, consectetur pretium dui tortor et odio. Fusce a nunc ac est faucibus laoreet. Praesent ex turpis, facilisis a ligula sit amet, ullamcorper mollis turpis. Vestibulum tempus mi eu sodales gravida. Vivamus egestas sollicitudin lectus. Nulla non ante eu orci tincidunt semper ac id justo. Vestibulum mi metus, pellentesque eget laoreet sagittis, ultrices non nunc. Nam suscipit felis a ex dictum sodales. Ut ultricies convallis nisl. Morbi finibus ligula quis lectus cursus, eget eleifend magna porta. Nullam gravida metus nec auctor tempus.",
-    "latestUpdates.article20251112.details.imageAlt1": "Un grupo de personas sosteniendo carteles en una manifestación de la justicia social en Austin, Texas",
-    "latestUpdates.article20251112.details.imageAlt2": "Los oradores de ASJR hablan sobre la justicia social en frente a un público."
+    "latestUpdates.article20251112.details.paragraph1": "Adeola, jefa de la Oficina del Defensor Público, habló sobre los importantes avances logrados en los últimos cinco años, incluyendo el aumento de personal y la importancia de las comparecencias iniciales presenciales de los clientes. Posteriormente, el grupo se centró en los desafíos del sistema de justicia penal, como los problemas de financiación, la gestión de casos y la necesidad de mayor apoyo y recursos para los defensores públicos del condado de Travis.",
+    "latestUpdates.article20251112.details.imageAlt1": "Una multitud de personas sosteniendo carteles en una manifestación por la bondad en Austin, Texas."
 }

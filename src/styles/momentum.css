@@ -549,17 +549,22 @@ img {
         align-items: start;
         justify-content: start;
         gap: 0.25rem;
+
+        h2 {
+          font-size: var(--mds-font-size-heading-small);
+        }
       }
     }
-
-    .article-header-info {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      justify-content: start;
-      gap: 0.25rem;
-    }
   }
+}
+
+.article-header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 0.5rem;
+  font-size: 1.25rem;
 }
 
 /* About Page Styles */
