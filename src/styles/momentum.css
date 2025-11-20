@@ -407,6 +407,18 @@ img {
   padding: 1.5rem;
 }
 
+.card-list-title {
+  font-weight: 700;
+  font-size: var(--mds-font-size-heading-small);
+}
+/* Home - Who We Are */
+.section.who-we-are .card-list ul li {
+
+  .card-list-title {
+    font-size: var(--mds-font-size-heading-xsmall);
+  }
+}
+
 /* Home - What We Do */
 .section.what-we-do .inner-container {
   padding: 7.5rem 0;
@@ -418,6 +430,7 @@ img {
   .card-list ul li {
     color: var(--mds-color-theme-text-primary-normal);
     padding: 0;
+    gap: 0;
 
     border: 1px solid var(--mds-color-theme-outline-primary-normal);
     border-radius: 0.5rem;
@@ -437,7 +450,7 @@ img {
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    gap: 0.5rem;
+    gap: .5rem;
     padding: 1.5rem;
 
     width: 90%;
