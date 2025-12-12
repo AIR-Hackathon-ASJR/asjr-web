@@ -14,8 +14,6 @@ const iconsDistFolder = getAssetsFolder(
 );
 
 export default defineConfig({
-  site: 'https://air-hackathon-asjr.github.io',
-  base: '/asjr-web/',
   output: 'server',
   adapter: vercel(),
   outDir: './docs',
