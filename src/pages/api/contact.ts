@@ -1,11 +1,33 @@
+import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
 
-export const prerender = true;
+export const prerender = false;
 
-export async function POST({ request }) {
+export const POST: APIRoute = async ({ request }) => {
   try {
-    // Parse request body (JSON)
-    const body = await request.json();
+    console.log('📨 Received POST request to /api/contact');
+    console.log('Content-Type:', request.headers.get('content-type'));
+
+    let body;
+    try {
+      body = await request.json();
+      console.log('📦 Parsed body:', body);
+    } catch (parseError) {
+      console.error('❌ Failed to parse JSON:', parseError);
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: 'Invalid JSON in request body',
+        }),
+        {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    }
+
     const { firstName, lastName, email, message } = body;
 
     // Validate required fields
@@ -26,20 +48,31 @@ export async function POST({ request }) {
 
     // Gmail SMTP Configuration from environment variables
     const smtpConfig = {
-      //host: import.meta.env.SMTP_HOST || 'smtp.gmail.com',
-      //port: parseInt(import.meta.env.SMTP_PORT || '465'),
-      //secure: import.meta.env.SMTP_SECURE === 'true' || true,
-      //user: import.meta.env.GMAIL_USER,
-      //recipient: import.meta.env.GMAIL_RECIPIENT || import.meta.env.GMAIL_USER
-
-      //TODO: Get ENV variables to work and replace with them here
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      user: 'asjraustindev@gmail.com',
-      recipient: 'asjraustindev@gmail.com',
-      password: 'iqhtaqhhjkcbxlpv',
+      host: import.meta.env.SMTP_HOST || 'smtp.gmail.com',
+      port: parseInt(import.meta.env.SMTP_PORT || '465'),
+      secure: import.meta.env.SMTP_SECURE === 'true' || true,
+      user: import.meta.env.GMAIL_USER,
+      recipient: import.meta.env.GMAIL_RECIPIENT || import.meta.env.GMAIL_USER,
+      password: import.meta.env.GMAIL_APP_PASSWORD,
     };
+
+    // Check if credentials are configured
+    if (!smtpConfig.user || !smtpConfig.password) {
+      console.error('Gmail credentials not configured');
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message:
+            'Email service not configured. Please contact the administrator.',
+        }),
+        {
+          status: 500,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    }
 
     // Create nodemailer transporter
     const transporter = nodemailer.createTransport({
@@ -85,6 +118,7 @@ ${message}
     // Send email
     const info = await transporter.sendMail(mailOptions);
 
+    console.log('✅ Email sent successfully!');
     console.log('Message ID:', info.messageId);
     console.log('Response:', info.response);
 
@@ -103,14 +137,17 @@ ${message}
       }
     );
   } catch (error) {
-    console.error('Error sending email:', error);
-    console.error('Error details:', error.message);
+    console.error('❌ Error sending email:', error);
+    console.error(
+      'Error details:',
+      error instanceof Error ? error.message : 'Unknown error'
+    );
 
     return new Response(
       JSON.stringify({
         success: false,
         message: 'Failed to send email. Please try again later.',
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
       }),
       {
         status: 500,
@@ -120,4 +157,4 @@ ${message}
       }
     );
   }
-}
+};

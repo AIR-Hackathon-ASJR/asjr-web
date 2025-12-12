@@ -329,10 +329,14 @@ const urlSuffix = url.split('/').pop();
 
         try {
           // Send form data to API endpoint
-          // Use environment variable for API URL (Vercel deployment)
-          const apiUrl =
-            import.meta.env.PUBLIC_API_URL ||
-            'https://your-project.vercel.app/api/contact';
+          // Detect environment and use appropriate API URL
+          const isProduction = window.location.hostname !== 'localhost';
+          const apiUrl = isProduction
+            ? '/api/contact' // Vercel serverless function
+            : `${window.location.origin}/asjr-web/api/contact`; // Local Astro endpoint
+
+          console.log('Submitting to:', apiUrl);
+
           const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {

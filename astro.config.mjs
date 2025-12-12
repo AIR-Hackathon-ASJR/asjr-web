@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel/serverless';
 import copy from 'rollup-plugin-copy';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -15,7 +16,8 @@ const iconsDistFolder = getAssetsFolder(
 export default defineConfig({
   site: 'https://air-hackathon-asjr.github.io',
   base: '/asjr-web/',
-  output: 'static',
+  output: 'server',
+  adapter: vercel(),
   outDir: './docs',
   i18n: {
     defaultLocale: 'en',

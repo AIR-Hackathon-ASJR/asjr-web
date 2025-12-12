@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/node": "^9.5.1",
+    "@astrojs/vercel": "^9.0.2",
     "@momentum-design/components": "^0.122.3",
     "@momentum-design/fonts": "^0.2.5",
     "@momentum-design/icons": "^0.37.4",

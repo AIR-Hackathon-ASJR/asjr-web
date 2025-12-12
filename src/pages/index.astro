@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GetInvolvedForm from '../components/shared/Form/GetInvolvedForm.astro';
-import GetInvolvedFormEmailJS from '../components/shared/Form/GetInvolvedForm2.astro';
+// import GetInvolvedFormEmailJS from '../components/shared/Form/GetInvolvedForm2.astro';
 
 import { Image } from 'astro:assets';
 import HomeHero from '../assets/images/home/home-hero.png';
@@ -108,7 +108,9 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
           </li>
           <li>
             <div class="card-icon"><ChatsTeardrop class="icon" /></div>
-            <h3 class="card-list-title">{t(lang, 'values.communication.title')}</h3>
+            <h3 class="card-list-title">
+              {t(lang, 'values.communication.title')}
+            </h3>
             <p>
               {t(lang, 'values.communication.description')}
             </p>
@@ -122,7 +124,9 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
           </li>
           <li>
             <div class="card-icon"><Handshake class="icon" /></div>
-            <h3 class="card-list-title">{t(lang, 'values.collaboration.title')}</h3>
+            <h3 class="card-list-title">
+              {t(lang, 'values.collaboration.title')}
+            </h3>
             <p>
               {t(lang, 'values.collaboration.description')}
             </p>
@@ -161,45 +165,70 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
             </div>
           </li>
           <li>
-            <Image src={WhatWeDo02} alt={t(lang, 'programs.publicDefender.imageAlt')} />
+            <Image
+              src={WhatWeDo02}
+              alt={t(lang, 'programs.publicDefender.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.publicDefender.title')}</h3>
+              <h3 class="card-list-title">
+                {t(lang, 'programs.publicDefender.title')}
+              </h3>
               <p>
                 {t(lang, 'programs.publicDefender.description')}
               </p>
             </div>
           </li>
           <li>
-            <Image src={WhatWeDo03} alt={t(lang, 'programs.policeOversight.imageAlt')} />
+            <Image
+              src={WhatWeDo03}
+              alt={t(lang, 'programs.policeOversight.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.policeOversight.title')}</h3>
+              <h3 class="card-list-title">
+                {t(lang, 'programs.policeOversight.title')}
+              </h3>
               <p>
                 {t(lang, 'programs.policeOversight.description')}
               </p>
             </div>
           </li>
           <li>
-            <Image src={WhatWeDo04} alt={t(lang, 'programs.earlyCaseReview.imageAlt')} />
+            <Image
+              src={WhatWeDo04}
+              alt={t(lang, 'programs.earlyCaseReview.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.earlyCaseReview.title')}</h3>
+              <h3 class="card-list-title">
+                {t(lang, 'programs.earlyCaseReview.title')}
+              </h3>
               <p>
                 {t(lang, 'programs.earlyCaseReview.description')}
               </p>
             </div>
           </li>
           <li>
-            <Image src={WhatWeDo05} alt={t(lang, 'programs.communityPower.imageAlt')} />
+            <Image
+              src={WhatWeDo05}
+              alt={t(lang, 'programs.communityPower.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.communityPower.title')}</h3>
+              <h3 class="card-list-title">
+                {t(lang, 'programs.communityPower.title')}
+              </h3>
               <p>
                 {t(lang, 'programs.communityPower.description')}
               </p>
             </div>
           </li>
           <li>
-            <Image src={WhatWeDo06} alt={t(lang, 'programs.rightsEducation.imageAlt')} />
+            <Image
+              src={WhatWeDo06}
+              alt={t(lang, 'programs.rightsEducation.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.rightsEducation.title')}</h3>
+              <h3 class="card-list-title">
+                {t(lang, 'programs.rightsEducation.title')}
+              </h3>
               <p>
                 {t(lang, 'programs.rightsEducation.description')}
               </p>
@@ -240,7 +269,7 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
     <div class="inner-container">
       <div class="contact-home">
         <h2>{t(lang, 'form.title')}</h2>
-        <GetInvolvedFormEmailJS lang={lang} />
+        <GetInvolvedForm lang={lang} />
       </div>
     </div>
   </section>
