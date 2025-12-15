@@ -89,7 +89,7 @@ export const POST: APIRoute = async ({ request }) => {
     const mailOptions = {
       from: email,
       to: smtpConfig.recipient,
-      subject: `New Contact Form Submission from: ${firstName} ${lastName}`,
+      subject: `asjr.info | New Contact Form Submission from: ${firstName} ${lastName}`,
       text: `
 Name: ${firstName} ${lastName}
 Email: ${email}
