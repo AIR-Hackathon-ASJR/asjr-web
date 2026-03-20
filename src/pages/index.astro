@@ -6,7 +6,6 @@ import GetInvolvedForm from '../components/shared/Form/GetInvolvedForm.astro';
 import { Image } from 'astro:assets';
 import HomeHero from '../assets/images/home/home-hero.png';
 import WhoWeAre01 from '../assets/images/home/who-we-are-01.png';
-import WhoWeAre02 from '../assets/images/home/who-we-are-02.png';
 import WhatWeDo01 from '../assets/images/home/what-we-do-01.png';
 import WhatWeDo02 from '../assets/images/home/what-we-do-02.png';
 import WhatWeDo03 from '../assets/images/home/what-we-do-03.png';
@@ -90,10 +89,7 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
           </mdc-buttonlink>
         </p>
       </div>
-      <div class="section-right">
-        <Image src={WhoWeAre01} alt={t(lang, 'whoWeAre.imageAlt1')} />
-        <Image src={WhoWeAre02} alt={t(lang, 'whoWeAre.imageAlt2')} />
-      </div>
+        <Image class="section-right" src={WhoWeAre01} alt={t(lang, 'whoWeAre.imageAlt1')} />
     </div>
     <div class="inner-container who-we-are-card-list">
       <!-- Card List -->

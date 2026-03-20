@@ -416,21 +416,13 @@ img {
   justify-content: start;
   gap: 1rem;
 
-  width: 50%;
 }
 
-.section.who-we-are .section-right {
-  display: grid;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: start;
-  grid-template-columns: repeat(2, 1fr);
-}
 
-.section.who-we-are .section-right img {
+.section.who-we-are img {
   padding: 0;
   margin: 0;
-  width: 100%;
+  width: 50%;
   height: auto;
 }
 
@@ -573,6 +565,10 @@ img {
       width: 100%;
       height: 200px;
       border-radius: 1.15rem 1.15rem 0 0;
+    }
+
+    .image-top{
+      object-position: top;
     }
 
     .card-list-content {
@@ -1203,12 +1199,6 @@ img {
 
   .section.who-we-are .section-left {
     width: 100%;
-  }
-
-  .section.who-we-are .section-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
   }
 
   .section.what-we-do .inner-container {

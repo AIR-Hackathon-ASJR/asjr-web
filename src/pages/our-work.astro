@@ -3,12 +3,12 @@ import Layout from '../layouts/Layout.astro';
 
 //Images
 import { Image } from 'astro:assets';
-import WhatWeDo01 from '../assets/images/what-we-do/what-we-do-01.png';
-import WhatWeDo02 from '../assets/images/what-we-do/what-we-do-02.png';
-import WhatWeDo03 from '../assets/images/what-we-do/what-we-do-03.png';
-import WhatWeDo04 from '../assets/images/what-we-do/what-we-do-04.png';
-import WhatWeDo05 from '../assets/images/what-we-do/what-we-do-05.png';
-import WhatWeDo06 from '../assets/images/what-we-do/what-we-do-06.png';
+import WhatWeDo01 from '../assets/images/what-we-do/what-we-do-07.png';
+import WhatWeDo02 from '../assets/images/what-we-do/what-we-do-08.png';
+import WhatWeDo03 from '../assets/images/what-we-do/what-we-do-09.png';
+import WhatWeDo04 from '../assets/images/what-we-do/what-we-do-10.png';
+import WhatWeDo05 from '../assets/images/what-we-do/what-we-do-11.png';
+import WhatWeDo06 from '../assets/images/what-we-do/what-we-do-13.png';
 
 import { t, type Lang } from '../i18n/get';
 
@@ -39,7 +39,7 @@ const lang: Lang =
       <div class="card-list">
         <ul>
           <li>
-            <Image src={WhatWeDo01} alt={t(lang, 'whatWeDo.counsel.imageAlt')} />
+            <Image class="image-top" src={WhatWeDo01} alt={t(lang, 'whatWeDo.counsel.imageAlt')} />
             <div class="card-list-content">
               <h2 class="card-list-title">{t(lang, 'whatWeDo.counsel.title')}</h2>
               <p>{t(lang, 'whatWeDo.counsel.description')}</p>
@@ -82,7 +82,7 @@ const lang: Lang =
             </div>
           </li>
           <li>
-            <Image src={WhatWeDo06} alt={t(lang, 'whatWeDo.rightsEducation.imageAlt')} />
+            <Image class="image-top" src={WhatWeDo06} alt={t(lang, 'whatWeDo.rightsEducation.imageAlt')} />
             <div class="card-list-content">
               <h2 class="card-list-title">{t(lang, 'whatWeDo.rightsEducation.title')}</h2>
               <p>
