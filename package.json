@@ -3,8 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "tinacms dev -c \"astro dev\"",
+    "build": "tinacms build && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -17,11 +17,15 @@
     "@phosphor-icons/react": "^2.1.10",
     "astro": "^5.15.8",
     "astro-navbar": "^2.4.0",
+    "decap-cms-app": "^3.14.0",
     "nodemailer": "^7.0.10",
-    "phosphor-astro": "^2.1.0"
+    "phosphor-astro": "^2.1.0",
+    "tinacms": "^3.9.1"
   },
   "packageManager": "yarn@4.10.3",
   "devDependencies": {
+    "@tinacms/cli": "^2.4.4",
+    "@types/node": "^25.9.2",
     "@types/nodemailer": "^7",
     "rollup-plugin-copy": "^3.5.0"
   }

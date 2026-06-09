@@ -12,11 +12,30 @@ const iconsDistFolder = getAssetsFolder(
   '@momentum-design/icons/dist/manifest.json'
 );
 
+/** Tina preview iframe loads /asjr-web without a trailing slash; rewrite for dev. */
+function basePathRewrite() {
+  return {
+    name: 'base-path-rewrite',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        const [pathname, search = ''] = (req.url ?? '').split('?');
+        if (pathname === '/asjr-web') {
+          req.url = `/asjr-web/${search ? `?${search}` : ''}`;
+        }
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig({
   site: 'https://air-hackathon-asjr.github.io',
   base: '/asjr-web/',
   output: 'static',
   outDir: './docs',
+  redirects: {
+    '/asjr-web': '/asjr-web/',
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
@@ -25,6 +44,7 @@ export default defineConfig({
     },
   },
   vite: {
+    plugins: [basePathRewrite()],
     build: {
       rollupOptions: {
         plugins: [
