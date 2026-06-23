@@ -29,10 +29,8 @@ function basePathRewrite() {
 }
 
 export default defineConfig({
-  site: 'https://air-hackathon-asjr.github.io',
-  base: '/asjr-web/',
+  site: 'https://www.asjr.info',
   output: 'static',
-  outDir: './docs',
   redirects: {
     '/asjr-web': '/asjr-web/',
   },
@@ -53,7 +51,7 @@ export default defineConfig({
             targets: [
               {
                 src: path.join(iconsDistFolder, '/svg/*.svg'),
-                dest: 'docs/icons',
+                dest: 'dist/icons',
               },
               {
                 src: path.join(iconsDistFolder, '/svg/*.svg'),

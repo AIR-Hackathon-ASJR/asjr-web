@@ -1,7 +1,7 @@
 import { defineConfig } from "tinacms";
 
 // Must match `base` in astro.config.mjs
-const basePath = "";
+const basePath = "/asjr-web";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
