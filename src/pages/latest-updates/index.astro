@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import KindnessRally from '../../assets/images/latest-updates/article20251112/kindness-rally.png';
 import CoreMembers from '../../assets/images/latest-updates/article20251022/coreteam.png';
 import CourtRoom from '../../assets/images/latest-updates/article20251017/courtroom.png';
+import RepresentationProtest from '../../assets/images/latest-updates/article20260702/representation-protest.jpg';
 
 import { t, type Lang } from '../../i18n/get';
 
@@ -28,8 +29,9 @@ function getArticleUrl(articleName: string): string {
   return baseUrl + relativePath + '/' + articleName;
 }
 
-const articles = ['20251112', '20251022', '20251017'] as const;
+const articles = ['20260702', '20251112', '20251022', '20251017'] as const;
 const images: Record<string, any> = {
+  '20260702': RepresentationProtest,
   '20251112': KindnessRally,
   '20251022': CoreMembers,
   '20251017': CourtRoom,
