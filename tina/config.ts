@@ -65,6 +65,21 @@ export default defineConfig({
             required: true,
           },
           {
+            type: "string",
+            name: "summary",
+            label: "Summary",
+            required: true,
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Featured Image",
+            required: true,
+          },
+          {
             type: "rich-text",
             name: "body",
             label: "Body",
