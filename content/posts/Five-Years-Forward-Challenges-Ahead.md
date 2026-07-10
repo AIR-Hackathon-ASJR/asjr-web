@@ -1,8 +1,7 @@
 ---
 title: 'Five Years Forward, Challenges Ahead'
 posted: 2025-11-02T23:07:42.940Z
-summary: |
-  Insights from Chief Adeola on staffing gains, resource gaps, and the urgent need for stronger support for defenders.
+summary: 'Insights from Chief Adeola on staffing gains, resource gaps, and the urgent need for stronger support for defenders.'
 image: /_image-(1).webp
 ---
 
