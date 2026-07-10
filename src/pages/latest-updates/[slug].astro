@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('post');
+
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title}>
+  <section class="section">
+    <div class="inner-container">
+      <a href="/latest-updates">← Back to latest updates</a>
+
+      <h1>{post.data.title}</h1>
+      <p>{post.data.posted.toLocaleDateString()}</p>
+
+      {
+        post.data.image && (
+          <img
+            src={post.data.image}
+            alt={post.data.title}
+            style="width: 100%; max-width: 900px; height: auto;"
+          />
+        )
+      }
+
+      <p>{post.data.summary}</p>
+
+      <article>
+        <Content />
+      </article>
+    </div>
+  </section>
+</Layout>
