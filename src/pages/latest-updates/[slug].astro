@@ -18,8 +18,9 @@ const { Content } = await render(post);
 <Layout title={post.data.title}>
   <section class="section">
     <div class="inner-container">
-      <a href="/latest-updates">← Back to latest updates</a>
-
+<a href={`${import.meta.env.BASE_URL}latest-updates`}>
+  ← Back to latest updates
+</a>
       <h1>{post.data.title}</h1>
       <p>{post.data.posted.toLocaleDateString()}</p>
 

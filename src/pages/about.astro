@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
 import { Image } from "astro:assets";
@@ -29,6 +30,12 @@ const relativePath = currentPath.startsWith(baseUrl)
 
 const lang: Lang =
   relativePath.startsWith("es/") || relativePath.startsWith("es") ? "es" : "en";
+
+const pages = await getCollection("page");
+const about = pages.find(
+  (p) => p.data.language === lang && p.data.page === "about"
+);
+
 ---
 
 <script>
@@ -44,9 +51,9 @@ const lang: Lang =
   <section class="section about-hero">
     <div class="inner-container">
       <div class="section-title">
-        <h1>{t(lang, "about.hero.title")}</h1>
+      <h1>{about?.data.heroTitle}</h1>
         <p class="hero-subtitle">
-          {t(lang, "about.hero.subtitle")}
+         {about?.data.heroSubtitle}
         </p>
       </div>
 
@@ -66,11 +73,10 @@ const lang: Lang =
     <div class="inner-container">
       <div class="section-title centered">
         <h2 class="sub-header">
-          {t(lang, "about.story.heading")}
-        </h2>
+         <h2>{about?.data.storyHeading}</h2>
         <p class="story-description">
-          {t(lang, "about.story.description")}
-        </p>
+         {about?.data.storyDescription}
+    </p>
       </div>
 
       <div class="video-container">
@@ -107,10 +113,8 @@ const lang: Lang =
     <div class="inner-container">
       <div class="section-content">
         <div class="section-text">
-          <h2>{t(lang, "about.vision.heading")}</h2>
-          <p>
-            {t(lang, "about.vision.description")}
-          </p>
+          <h2>{about?.data.visionHeading}</h2>
+          <p>{about?.data.visionDescription}</p>
         </div>
         <div class="section-image">
           <Image src={VisionImage} alt={t(lang, "about.vision.imageAlt")} />
@@ -127,10 +131,8 @@ const lang: Lang =
           <Image src={MissionImage} alt={t(lang, "about.mission.imageAlt")} />
         </div>
         <div class="section-text">
-          <h2>{t(lang, "about.mission.heading")}</h2>
-          <p>
-            {t(lang, "about.mission.description")}
-          </p>
+          <h2>{about?.data.missionHeading}</h2>
+          <p>{about?.data.missionDescription}</p>
         </div>
       </div>
     </div>
@@ -154,16 +156,16 @@ const lang: Lang =
           <ul>
             <li>
               <div class="card-icon"><GraduationCap class="icon" /></div>
-              <label>{t(lang, "about.goals.education.title")}</label>
+              <label>{about?.data.educationTitle}</label>
               <p>
-                {t(lang, "about.goals.education.description")}
+                {about?.data.educationDescription}
               </p>
             </li>
             <li>
               <div class="card-icon"><ChatsTeardrop class="icon" /></div>
-              <label>{t(lang, "about.goals.communication.title")}</label>
+              <label>{about?.data.communicationTitle}</label>
               <p>
-                {t(lang, "about.goals.communication.description")}
+              {about?.data.advocacyTitle}
               </p>
             </li>
           </ul>
@@ -177,21 +179,21 @@ const lang: Lang =
             <div class="card-icon"><SpeakerHigh class="icon" /></div>
             <label>{t(lang, "about.goals.advocacy.title")}</label>
             <p>
-              {t(lang, "about.goals.advocacy.description")}
+              {about?.data.advocacyDescription}
             </p>
           </li>
           <li>
             <div class="card-icon"><Handshake class="icon" /></div>
-            <label>{t(lang, "about.goals.collaboration.title")}</label>
+            <label>{about?.data.collaborationTitle}</label>
             <p>
-              {t(lang, "about.goals.collaboration.description")}
+              {about?.data.collaborationDescription}
             </p>
           </li>
           <li>
             <div class="card-icon"><SealCheck class="icon" /></div>
-            <label>{t(lang, "about.goals.accountability.title")}</label>
+            <label>{about?.data.accountabilityTitle}</label>
             <p>
-              {t(lang, "about.goals.accountability.description")}
+              {about?.data.accountabilityDescription}
             </p>
           </li>
         </ul>
