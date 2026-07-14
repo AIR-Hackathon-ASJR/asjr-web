@@ -87,6 +87,174 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "aboutPage",
+        label: "About Page",
+        path: "content/pages/en",
+        format: "md",
+        match: {
+          include: "about",
+        },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+            createNestedFolder: false,
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "language",
+            label: "Language",
+          },
+          {
+            type: "string",
+            name: "page",
+            label: "Page",
+          },
+          {
+            type: "string",
+            name: "heroTitle",
+            label: "Hero Title",
+          },
+          {
+            type: "string",
+            name: "heroSubtitle",
+            label: "Hero Subtitle",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "image",
+            name: "heroImageLarge",
+            label: "Hero Image — Large",
+          },
+          {
+            type: "image",
+            name: "heroImageSmall",
+            label: "Hero Image — Small",
+          },
+          {
+            type: "string",
+            name: "storyHeading",
+            label: "Story Heading",
+          },
+          {
+            type: "string",
+            name: "storyDescription",
+            label: "Story Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "visionHeading",
+            label: "Vision Heading",
+          },
+          {
+            type: "string",
+            name: "visionDescription",
+            label: "Vision Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "missionHeading",
+            label: "Mission Heading",
+          },
+          {
+            type: "string",
+            name: "missionDescription",
+            label: "Mission Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "goalsHeading",
+            label: "Goals Heading",
+          },
+          {
+            type: "string",
+            name: "goalsDescription",
+            label: "Goals Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "educationTitle",
+            label: "Education Title",
+          },
+          {
+            type: "string",
+            name: "educationDescription",
+            label: "Education Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "communicationTitle",
+            label: "Communication Title",
+          },
+          {
+            type: "string",
+            name: "communicationDescription",
+            label: "Communication Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "advocacyTitle",
+            label: "Advocacy Title",
+          },
+          {
+            type: "string",
+            name: "advocacyDescription",
+            label: "Advocacy Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "collaborationTitle",
+            label: "Collaboration Title",
+          },
+          {
+            type: "string",
+            name: "collaborationDescription",
+            label: "Collaboration Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "accountabilityTitle",
+            label: "Accountability Title",
+          },
+          {
+            type: "string",
+            name: "accountabilityDescription",
+            label: "Accountability Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+        ],
+      },
     ],
   },
 });
