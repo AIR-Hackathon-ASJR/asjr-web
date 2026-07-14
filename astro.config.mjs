@@ -1,4 +1,6 @@
 import { defineConfig } from 'astro/config';
+import tina from '@tinacms/astro/integration';
+import { tinaAdminDevRedirect } from '@tinacms/astro/vite';
 import copy from 'rollup-plugin-copy';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -29,6 +31,7 @@ function basePathRewrite() {
 }
 
 export default defineConfig({
+  integrations: [tina()],
   site: 'https://www.asjr.info',
   output: 'static',
   redirects: {
@@ -42,7 +45,7 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [basePathRewrite()],
+    plugins: [tinaAdminDevRedirect(), basePathRewrite()],
     build: {
       rollupOptions: {
         plugins: [

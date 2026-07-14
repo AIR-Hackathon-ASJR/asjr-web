@@ -15,6 +15,7 @@
     "@momentum-design/icons": "^0.37.4",
     "@momentum-design/tokens": "^0.8.0",
     "@phosphor-icons/react": "^2.1.10",
+    "@tinacms/astro": "^0.5.1",
     "astro": "^5.15.8",
     "astro-navbar": "^2.4.0",
     "decap-cms-app": "^3.14.0",

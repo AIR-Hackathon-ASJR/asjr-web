@@ -2055,6 +2055,13 @@
     typescript "^5.7.3"
     zod "^3.24.2"
 
+"@tinacms/astro@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.npmjs.org/@tinacms/astro/-/astro-0.5.1.tgz"
+  integrity sha512-uJB7ZDaWY6rJry3zBnc/YV63fNZJVLO17oLxda+pKR5UqW9mscziKZB1VoaSa5bI2PkeEPe/dtCZj6MRWyWjRQ==
+  dependencies:
+    "@tinacms/bridge" "0.3.0"
+
 "@tinacms/bridge@0.3.0":
   version "0.3.0"
   resolved "https://registry.npmjs.org/@tinacms/bridge/-/bridge-0.3.0.tgz"
@@ -3169,7 +3176,7 @@ astro-navbar@^2.4.0:
   resolved "https://registry.npmjs.org/astro-navbar/-/astro-navbar-2.4.0.tgz"
   integrity sha512-UhQnU8lz3a0NKL5gTBXFwYg1CVzP/DNlw1z6qW7f9Q1j33oMHdjwX/TmC2/xkJTKeq4a2RxgaqeJ+6CxCxRELg==
 
-astro@^5.15.8, astro@^5.17.3:
+"astro@^5.0.0 || ^6.0.0", astro@^5.15.8, astro@^5.17.3:
   version "5.18.2"
   resolved "https://registry.npmjs.org/astro/-/astro-5.18.2.tgz"
   integrity sha512-TnFwLnAXty5MXKPDGuKXqK4AMBXG+FH6RUdK7Oyc3gyfNoFIthT+4eRbzOK43bdRlLaZuxgciDSjgtggZ3OtGQ==
