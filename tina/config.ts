@@ -79,6 +79,8 @@ export default defineConfig({
       type: "string",
       name: "heroTitle",
       label: "Hero Title",
+      isTitle: true,
+      required: true,
       ui: {
         component: "textarea",
       },
