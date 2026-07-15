@@ -46,9 +46,482 @@ export default defineConfig({
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/r/content-modelling-collections/
   schema: {
     collections: [
+//Home
+{
+  name: "homePage",
+  label: "Home",
+  path: "content/pages/en",
+  format: "md",
+  match: {
+    include: "home",
+  },
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+      createNestedFolder: false,
+    },
+  },
+  fields: [
+    {
+      type: "string",
+      name: "language",
+      label: "Language",
+    },
+    {
+      type: "string",
+      name: "page",
+      label: "Page",
+    },
+
+    // Hero
+    {
+      type: "string",
+      name: "heroTitle",
+      label: "Hero Title",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "heroSubtitle",
+      label: "Hero Subtitle",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "heroCta",
+      label: "Hero CTA",
+    },
+
+    // Who We Are
+    {
+      type: "string",
+      name: "whoWeAreTag",
+      label: "Who We Are Tag",
+    },
+    {
+      type: "string",
+      name: "whoWeAreHeading",
+      label: "Who We Are Heading",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "whoWeAreDescription1",
+      label: "Who We Are Description 1",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "whoWeAreDescription2",
+      label: "Who We Are Description 2",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "whoWeAreCta",
+      label: "Who We Are CTA",
+    },
+    {
+      type: "string",
+      name: "whoWeAreImageAlt1",
+      label: "Who We Are Image Alt 1",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "whoWeAreImageAlt2",
+      label: "Who We Are Image Alt 2",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    // Values
+    {
+      type: "string",
+      name: "educationTitle",
+      label: "Education Title",
+    },
+    {
+      type: "string",
+      name: "educationDescription",
+      label: "Education Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "communicationTitle",
+      label: "Communication Title",
+    },
+    {
+      type: "string",
+      name: "communicationDescription",
+      label: "Communication Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "advocacyTitle",
+      label: "Advocacy Title",
+    },
+    {
+      type: "string",
+      name: "advocacyDescription",
+      label: "Advocacy Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "collaborationTitle",
+      label: "Collaboration Title",
+    },
+    {
+      type: "string",
+      name: "collaborationDescription",
+      label: "Collaboration Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "oversightTitle",
+      label: "Oversight & Evaluate Title",
+    },
+    {
+      type: "string",
+      name: "oversightDescription",
+      label: "Oversight & Evaluate Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    // Programs
+    {
+      type: "string",
+      name: "programsTag",
+      label: "Programs Tag",
+    },
+    {
+      type: "string",
+      name: "programsHeading",
+      label: "Programs Heading",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "cafaTitle",
+      label: "CAFA Title",
+    },
+    {
+      type: "string",
+      name: "cafaDescription",
+      label: "CAFA Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "publicDefenderTitle",
+      label: "Public Defender Title",
+    },
+    {
+      type: "string",
+      name: "publicDefenderDescription",
+      label: "Public Defender Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "policeOversightTitle",
+      label: "Police Oversight Title",
+    },
+    {
+      type: "string",
+      name: "policeOversightDescription",
+      label: "Police Oversight Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "earlyCaseReviewTitle",
+      label: "Early Case Review Title",
+    },
+    {
+      type: "string",
+      name: "earlyCaseReviewDescription",
+      label: "Early Case Review Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "communityPowerTitle",
+      label: "Community Power Title",
+    },
+    {
+      type: "string",
+      name: "communityPowerDescription",
+      label: "Community Power Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "rightsEducationTitle",
+      label: "Rights Education Title",
+    },
+    {
+      type: "string",
+      name: "rightsEducationDescription",
+      label: "Rights Education Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    // Latest Updates
+    {
+      type: "string",
+      name: "newsHeading",
+      label: "Latest Updates Heading",
+    },
+    {
+      type: "string",
+      name: "newsDescription1",
+      label: "Latest Updates Description 1",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "newsDescription2",
+      label: "Latest Updates Description 2",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "newsCta",
+      label: "Latest Updates CTA",
+    },
+    {
+      type: "string",
+      name: "newsImageAlt",
+      label: "Latest Updates Image Alt",
+      ui: {
+        component: "textarea",
+      },
+    },
+  ],
+},
+//About
+{
+  name: "aboutPage",
+  label: "About",
+  path: "content/pages/en",
+  format: "md",
+  match: {
+    include: "about",
+  },
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+      createNestedFolder: false,
+    },
+  },
+  fields: [
+    {
+      type: "string",
+      name: "language",
+      label: "Language",
+    },
+    {
+      type: "string",
+      name: "page",
+      label: "Page",
+    },
+    {
+      type: "string",
+      name: "heroTitle",
+      label: "Hero Title",
+    },
+    {
+      type: "string",
+      name: "heroSubtitle",
+      label: "Hero Subtitle",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "image",
+      name: "heroImageLarge",
+      label: "Hero Image — Large",
+    },
+    {
+      type: "image",
+      name: "heroImageSmall",
+      label: "Hero Image — Small",
+    },
+    {
+      type: "string",
+      name: "storyHeading",
+      label: "Story Heading",
+    },
+    {
+      type: "string",
+      name: "storyDescription",
+      label: "Story Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "visionHeading",
+      label: "Vision Heading",
+    },
+    {
+      type: "string",
+      name: "visionDescription",
+      label: "Vision Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "missionHeading",
+      label: "Mission Heading",
+    },
+    {
+      type: "string",
+      name: "missionDescription",
+      label: "Mission Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "goalsHeading",
+      label: "Goals Heading",
+    },
+    {
+      type: "string",
+      name: "goalsDescription",
+      label: "Goals Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "educationTitle",
+      label: "Education Title",
+    },
+    {
+      type: "string",
+      name: "educationDescription",
+      label: "Education Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "communicationTitle",
+      label: "Communication Title",
+    },
+    {
+      type: "string",
+      name: "communicationDescription",
+      label: "Communication Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "advocacyTitle",
+      label: "Advocacy Title",
+    },
+    {
+      type: "string",
+      name: "advocacyDescription",
+      label: "Advocacy Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "collaborationTitle",
+      label: "Collaboration Title",
+    },
+    {
+      type: "string",
+      name: "collaborationDescription",
+      label: "Collaboration Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "accountabilityTitle",
+      label: "Accountability Title",
+    },
+    {
+      type: "string",
+      name: "accountabilityDescription",
+      label: "Accountability Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+  ],
+},
+
+
+
+//latest updates
       {
         name: "post",
-        label: "Posts",
+        label: "Latest Updates",
         path: "content/posts",
         fields: [
           {
@@ -84,174 +557,6 @@ export default defineConfig({
             name: "body",
             label: "Body",
             isBody: true,
-          },
-        ],
-      },
-      {
-        name: "aboutPage",
-        label: "About Page",
-        path: "content/pages/en",
-        format: "md",
-        match: {
-          include: "about",
-        },
-        ui: {
-          allowedActions: {
-            create: false,
-            delete: false,
-            createNestedFolder: false,
-          },
-        },
-        fields: [
-          {
-            type: "string",
-            name: "language",
-            label: "Language",
-          },
-          {
-            type: "string",
-            name: "page",
-            label: "Page",
-          },
-          {
-            type: "string",
-            name: "heroTitle",
-            label: "Hero Title",
-          },
-          {
-            type: "string",
-            name: "heroSubtitle",
-            label: "Hero Subtitle",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "image",
-            name: "heroImageLarge",
-            label: "Hero Image — Large",
-          },
-          {
-            type: "image",
-            name: "heroImageSmall",
-            label: "Hero Image — Small",
-          },
-          {
-            type: "string",
-            name: "storyHeading",
-            label: "Story Heading",
-          },
-          {
-            type: "string",
-            name: "storyDescription",
-            label: "Story Description",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "string",
-            name: "visionHeading",
-            label: "Vision Heading",
-          },
-          {
-            type: "string",
-            name: "visionDescription",
-            label: "Vision Description",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "string",
-            name: "missionHeading",
-            label: "Mission Heading",
-          },
-          {
-            type: "string",
-            name: "missionDescription",
-            label: "Mission Description",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "string",
-            name: "goalsHeading",
-            label: "Goals Heading",
-          },
-          {
-            type: "string",
-            name: "goalsDescription",
-            label: "Goals Description",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "string",
-            name: "educationTitle",
-            label: "Education Title",
-          },
-          {
-            type: "string",
-            name: "educationDescription",
-            label: "Education Description",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "string",
-            name: "communicationTitle",
-            label: "Communication Title",
-          },
-          {
-            type: "string",
-            name: "communicationDescription",
-            label: "Communication Description",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "string",
-            name: "advocacyTitle",
-            label: "Advocacy Title",
-          },
-          {
-            type: "string",
-            name: "advocacyDescription",
-            label: "Advocacy Description",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "string",
-            name: "collaborationTitle",
-            label: "Collaboration Title",
-          },
-          {
-            type: "string",
-            name: "collaborationDescription",
-            label: "Collaboration Description",
-            ui: {
-              component: "textarea",
-            },
-          },
-          {
-            type: "string",
-            name: "accountabilityTitle",
-            label: "Accountability Title",
-          },
-          {
-            type: "string",
-            name: "accountabilityDescription",
-            label: "Accountability Description",
-            ui: {
-              component: "textarea",
-            },
           },
         ],
       },
