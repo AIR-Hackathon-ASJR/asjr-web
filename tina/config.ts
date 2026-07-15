@@ -515,9 +515,6 @@ export default defineConfig({
     },
   ],
 },
-
-
-
 //latest updates
       {
         name: "post",
