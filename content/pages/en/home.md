@@ -1,9 +1,7 @@
 ---
 language: en
 page: home
-heroTitle: |-
-  Justice with Compassion.<br />Support at Every Step.
-  test
+heroTitle: Justice with Compassion.<br />Support at Every Step.
 heroSubtitle: |
   We advocate for a fairer legal system, ensuring that every individual receives compassionate and competent support throughout the criminal legal process.
 heroCta: Learn more →
