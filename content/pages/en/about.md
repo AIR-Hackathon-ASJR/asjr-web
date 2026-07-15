@@ -2,9 +2,7 @@
 language: en
 page: about
 heroTitle: About us
-heroSubtitle: |-
-  We are committed to building a more just and equitable criminal legal system.
-   test
+heroSubtitle: We are committed to building a more just and equitable criminal legal system.
 heroImageLarge: /hero-01.png
 heroImageSmall: /hero-02.png
 storyHeading: Our Story
