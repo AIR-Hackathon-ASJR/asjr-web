@@ -1,4 +1,5 @@
 ---
+_template: our-work
 language: en
 page: our-work
 

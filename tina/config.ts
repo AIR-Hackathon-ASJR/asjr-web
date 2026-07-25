@@ -517,6 +517,189 @@ export default defineConfig({
     },
   ],
 },
+/*// Our Work
+{
+  name: "ourWorkPage",
+  label: "Our Work",
+  path: "content/pages/en",
+  format: "md",
+  match: {
+    include: "our-work",
+  },
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+      createNestedFolder: false,
+    },
+  },
+  fields: [
+    {
+      type: "string",
+      name: "language",
+      label: "Language",
+    },
+    {
+      type: "string",
+      name: "page",
+      label: "Page",
+    },
+    {
+      type: "string",
+      name: "pageTitle",
+      label: "Browser Page Title",
+      required: true,
+    },
+    {
+      type: "string",
+      name: "title",
+      label: "Page Heading",
+      isTitle: true,
+      required: true,
+    },
+    {
+      type: "string",
+      name: "description",
+      label: "Page Introduction",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    {
+      type: "string",
+      name: "counselTitle",
+      label: "Counsel at First Appearance — Title",
+    },
+    {
+      type: "string",
+      name: "counselDescription",
+      label: "Counsel at First Appearance — Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "counselImageAlt",
+      label: "Counsel at First Appearance — Image Alt Text",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    {
+      type: "string",
+      name: "officeTitle",
+      label: "Office of Police Oversight — Title",
+    },
+    {
+      type: "string",
+      name: "officeDescription",
+      label: "Office of Police Oversight — Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "officeImageAlt",
+      label: "Office of Police Oversight — Image Alt Text",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    {
+      type: "string",
+      name: "dismissalTitle",
+      label: "Dismissal & Diversion Opportunities — Title",
+    },
+    {
+      type: "string",
+      name: "dismissalDescription",
+      label: "Dismissal & Diversion Opportunities — Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "dismissalImageAlt",
+      label: "Dismissal & Diversion Opportunities — Image Alt Text",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    {
+      type: "string",
+      name: "communityTitle",
+      label: "Community-Powered Support — Title",
+    },
+    {
+      type: "string",
+      name: "communityDescription",
+      label: "Community-Powered Support — Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "communityImageAlt",
+      label: "Community-Powered Support — Image Alt Text",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    {
+      type: "string",
+      name: "publicDefendersTitle",
+      label: "Public Defenders' Office Support — Title",
+    },
+    {
+      type: "string",
+      name: "publicDefendersDescription",
+      label: "Public Defenders' Office Support — Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "publicDefendersImageAlt",
+      label: "Public Defenders' Office Support — Image Alt Text",
+      ui: {
+        component: "textarea",
+      },
+    },
+
+    {
+      type: "string",
+      name: "rightsEducationTitle",
+      label: "Rights Education & Advocacy — Title",
+    },
+    {
+      type: "string",
+      name: "rightsEducationDescription",
+      label: "Rights Education & Advocacy — Description",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
+      type: "string",
+      name: "rightsEducationImageAlt",
+      label: "Rights Education & Advocacy — Image Alt Text",
+      ui: {
+        component: "textarea",
+      },
+    },
+  ],
+},
+*/
 //latest updates
       {
         name: "post",

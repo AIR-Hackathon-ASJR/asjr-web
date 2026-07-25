@@ -15,17 +15,17 @@
     "@momentum-design/icons": "^0.37.4",
     "@momentum-design/tokens": "^0.8.0",
     "@phosphor-icons/react": "^2.1.10",
-    "@tinacms/astro": "^0.5.1",
+    "@tinacms/astro": "0.5.1",
     "astro": "^5.15.8",
     "astro-navbar": "^2.4.0",
     "decap-cms-app": "^3.14.0",
     "nodemailer": "^7.0.10",
     "phosphor-astro": "^2.1.0",
-    "tinacms": "^3.9.1"
+    "tinacms": "3.9.1"
   },
   "packageManager": "yarn@4.10.3",
   "devDependencies": {
-    "@tinacms/cli": "^2.4.4",
+    "@tinacms/cli": "2.4.4",
     "@types/node": "^25.9.2",
     "@types/nodemailer": "^7",
     "rollup-plugin-copy": "^3.5.0"

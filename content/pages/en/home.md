@@ -1,4 +1,5 @@
 ---
+_template: home
 language: en
 page: home
 heroTitle: Justice with Compassion.<br />Support at Every Step.

@@ -1,4 +1,5 @@
 ---
+_template: about
 language: en
 page: about
 heroTitle: About us
