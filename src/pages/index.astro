@@ -50,7 +50,7 @@ const home = pages.find(
 const homeData = lang === 'en' ? home?.data : undefined;
 
 const aboutUs = `${baseUrl}${lang === 'es' ? 'es/' : ''}about`;
-const whatWeDo = `${baseUrl}${lang === 'es' ? 'es/' : ''}what-we-do`;
+const whatWeDo = `${baseUrl}${lang === 'es' ? 'es/' : ''}about`;
 const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
 ---
 
@@ -113,7 +113,7 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
 
           <mdc-buttonlink
             size="40"
-            href={whatWeDo}
+            href={aboutUs}
             rel="noopener noreferrer"
           >
             {homeData?.whoWeAreCta ?? t(lang, 'whoWeAre.cta')}
