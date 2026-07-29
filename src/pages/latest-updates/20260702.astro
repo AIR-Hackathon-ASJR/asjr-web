@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+//Images
+import { Image } from 'astro:assets';
+import RepresentationProtest from '../../assets/images/latest-updates/article20260702/representation-protest.jpg';
+
+import { t, type Lang } from '../../i18n/get';
+
+const baseUrl = import.meta.env.BASE_URL;
+
+// Detect current language from URL
+const currentPath = Astro.url.pathname;
+
+// Remove baseUrl to get relative path for language detection
+const relativePath = currentPath.startsWith(baseUrl)
+  ? currentPath.slice(baseUrl.length)
+  : currentPath;
+
+const lang: Lang =
+  relativePath.startsWith('es/') || relativePath.startsWith('es') ? 'es' : 'en';
+
+const langUrl =
+  relativePath.startsWith('es/') || relativePath.startsWith('es') ? 'es/' : '';
+const latestUpdatesUrl = baseUrl + langUrl + 'latest-updates';
+
+const paragraphs = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+---
+
+<Layout title={t(lang, 'latestUpdates.article20260702.title')}>
+  <article class="section latest-updates details">
+    <div class="inner-container">
+      <div class="breadcrumb">
+        <div class="level">
+          <a href={latestUpdatesUrl}>{t(lang, 'nav.latestUpdates')}</a>
+        </div>
+        <div class="divider">></div>
+        <div class="level active">
+          {t(lang, 'latestUpdates.article20260702.title')}
+        </div>
+      </div>
+      <div class="article-header-info">
+        <h1>{t(lang, 'latestUpdates.article20260702.title')}</h1>
+        <p>
+          <time class="article-date"
+            >{t(lang, 'latestUpdates.article20260702.date')}</time
+          >
+          <div>{t(lang, 'latestUpdates.article20260702.subtitle')}</div>
+        </p>
+      </div>
+
+      <Image
+        src={RepresentationProtest}
+        alt={t(lang, 'latestUpdates.article20260702.details.imageAlt1')}
+      />
+
+      {
+        paragraphs.map((paragraph) => (
+          <p>
+            {t(
+              lang,
+              `latestUpdates.article20260702.details.paragraph${paragraph}`
+            )}
+          </p>
+        ))
+      }
+
+      <mdc-buttonlink
+        size="40"
+        href={latestUpdatesUrl}
+        rel="noopener noreferrer"
+      >
+        {t(lang, 'latestUpdates.article.backButton')}
+      </mdc-buttonlink>
+    </div>
+  </article>
+</Layout>
+
+<script>
+  import '@momentum-design/components/dist/components/buttonlink/index.js';
+  import '@momentum-design/components/dist/components/avatar/index.js';
+</script>
