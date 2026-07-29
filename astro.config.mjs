@@ -1,4 +1,6 @@
 import { defineConfig } from 'astro/config';
+import tina from '@tinacms/astro/integration';
+import { tinaAdminDevRedirect } from '@tinacms/astro/vite';
 import copy from 'rollup-plugin-copy';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -12,11 +14,29 @@ const iconsDistFolder = getAssetsFolder(
   '@momentum-design/icons/dist/manifest.json'
 );
 
+/** Tina preview iframe loads /asjr-web without a trailing slash; rewrite for dev. */
+function basePathRewrite() {
+  return {
+    name: 'base-path-rewrite',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        const [pathname, search = ''] = (req.url ?? '').split('?');
+        if (pathname === '/asjr-web') {
+          req.url = `/asjr-web/${search ? `?${search}` : ''}`;
+        }
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig({
-  site: 'https://air-hackathon-asjr.github.io',
-  base: '/asjr-web/',
+  integrations: [tina()],
+  site: 'https://www.asjr.info',
   output: 'static',
-  outDir: './docs',
+  redirects: {
+    '/asjr-web': '/asjr-web/',
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
@@ -25,6 +45,7 @@ export default defineConfig({
     },
   },
   vite: {
+    plugins: [tinaAdminDevRedirect(), basePathRewrite()],
     build: {
       rollupOptions: {
         plugins: [
@@ -33,7 +54,7 @@ export default defineConfig({
             targets: [
               {
                 src: path.join(iconsDistFolder, '/svg/*.svg'),
-                dest: 'docs/icons',
+                dest: 'dist/icons',
               },
               {
                 src: path.join(iconsDistFolder, '/svg/*.svg'),

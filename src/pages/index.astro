@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import GetInvolvedForm from '../components/shared/Form/GetInvolvedForm.astro';
 import GetInvolvedFormEmailJS from '../components/shared/Form/GetInvolvedForm2.astro';
+import { getCollection } from 'astro:content';
 
 import { Image } from 'astro:assets';
 import HomeHero from '../assets/images/home/home-hero.png';
@@ -15,7 +15,7 @@ import WhatWeDo05 from '../assets/images/home/what-we-do-05.png';
 import WhatWeDo06 from '../assets/images/home/what-we-do-06.png';
 import LatestNews from '../assets/images/home/latest-news.png';
 
-//Phosphor icons
+// Phosphor icons
 import GraduationCap from 'phosphor-astro/GraduationCap.astro';
 import ChatsTeardrop from 'phosphor-astro/ChatsTeardrop.astro';
 import SpeakerHigh from 'phosphor-astro/SpeakerHigh.astro';
@@ -29,16 +29,28 @@ const baseUrl = import.meta.env.BASE_URL;
 // Detect current language from URL
 const currentPath = Astro.url.pathname;
 
-// Remove baseUrl to get relative path for language detection
 const relativePath = currentPath.startsWith(baseUrl)
   ? currentPath.slice(baseUrl.length)
   : currentPath;
 
 const lang: Lang =
-  relativePath.startsWith('es/') || relativePath.startsWith('es') ? 'es' : 'en';
+  relativePath.startsWith('es/') || relativePath.startsWith('es')
+    ? 'es'
+    : 'en';
+
+const pages = await getCollection('page');
+
+const home = pages.find(
+  (entry) =>
+    entry.data.language === 'en' &&
+    entry.data.page === 'home'
+);
+
+
+const homeData = lang === 'en' ? home?.data : undefined;
 
 const aboutUs = `${baseUrl}${lang === 'es' ? 'es/' : ''}about`;
-const whatWeDo = `${baseUrl}${lang === 'es' ? 'es/' : ''}what-we-do`;
+const whatWeDo = `${baseUrl}${lang === 'es' ? 'es/' : ''}about`;
 const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
 ---
 
@@ -55,84 +67,137 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
   <!-- Hero -->
   <section class="section hero">
     <div class="inner-container">
-      <h1 set:html={t(lang, 'hero.title')} />
-      <p>
-        {t(lang, 'hero.subtitle')}
+      <h1 set:html={homeData?.heroTitle ?? t(lang, 'hero.title')} />
 
-        <mdc-buttonlink size="40" href={aboutUs} rel="noopener noreferrer">
-          {t(lang, 'hero.cta')}
+      <p>
+        {homeData?.heroSubtitle ?? t(lang, 'hero.subtitle')}
+
+        <mdc-buttonlink
+          size="40"
+          href={aboutUs}
+          rel="noopener noreferrer"
+        >
+          {homeData?.heroCta ?? t(lang, 'hero.cta')}
         </mdc-buttonlink>
       </p>
 
-      <Image src={HomeHero} alt={t(lang, 'hero.imageAlt')} />
+      <Image
+        src={HomeHero}
+        alt={t(lang, 'hero.imageAlt')}
+      />
     </div>
   </section>
 
   <!-- Who we are -->
   <section class="section who-we-are">
     <div class="inner-container overview">
-      <!-- Overview -->
       <div class="section-left">
         <div class="section-title">
-          <h2 class="pre-header">{t(lang, 'whoWeAre.tag')}</h2>
+          <h2 class="pre-header">
+            {homeData?.whoWeAreTag ?? t(lang, 'whoWeAre.tag')}
+          </h2>
+
           <p class="sub-header">
-            {t(lang, 'whoWeAre.heading')}
+            {homeData?.whoWeAreHeading ?? t(lang, 'whoWeAre.heading')}
           </p>
         </div>
-        <p>
-          {t(lang, 'whoWeAre.description1')}
-        </p>
-        <p>
-          {t(lang, 'whoWeAre.description2')}
 
-          <mdc-buttonlink size="40" href={aboutUs} rel="noopener noreferrer">
-            {t(lang, 'whoWeAre.cta')}
+        <p>
+          {homeData?.whoWeAreDescription1 ??
+            t(lang, 'whoWeAre.description1')}
+        </p>
+
+        <p>
+          {homeData?.whoWeAreDescription2 ??
+            t(lang, 'whoWeAre.description2')}
+
+          <mdc-buttonlink
+            size="40"
+            href={aboutUs}
+            rel="noopener noreferrer"
+          >
+            {homeData?.whoWeAreCta ?? t(lang, 'whoWeAre.cta')}
           </mdc-buttonlink>
         </p>
       </div>
+
       <div class="section-right">
-        <Image src={WhoWeAre01} alt={t(lang, 'whoWeAre.imageAlt1')} />
-        <Image src={WhoWeAre02} alt={t(lang, 'whoWeAre.imageAlt2')} />
+        <Image
+          src={WhoWeAre01}
+          alt={
+            homeData?.whoWeAreImageAlt1 ??
+            t(lang, 'whoWeAre.imageAlt1')
+          }
+        />
+
+        <Image
+          src={WhoWeAre02}
+          alt={
+            homeData?.whoWeAreImageAlt2 ??
+            t(lang, 'whoWeAre.imageAlt2')
+          }
+        />
       </div>
     </div>
+
     <div class="inner-container who-we-are-card-list">
-      <!-- Card List -->
       <div class="card-list">
         <ul>
           <li>
-            <div class="card-icon"><GraduationCap class="icon" /></div>
-            <h3 class="card-list-title">{t(lang, 'values.education.title')}</h3>
-            <p>
-              {t(lang, 'values.education.description')}
-            </p>
+            <div class="card-icon">
+              <GraduationCap class="icon" />
+            </div>
+           <h3 class="card-list-title">
+          {lang === 'en'
+            ? home?.data.educationTitle
+            : t(lang, 'values.education.title')}
+        </h3>
+
+        <p>
+          {lang === 'en'
+            ? home?.data.educationDescription
+            : t(lang, 'values.education.description')}
+        </p>
           </li>
+
           <li>
-            <div class="card-icon"><ChatsTeardrop class="icon" /></div>
-            <h3 class="card-list-title">{t(lang, 'values.communication.title')}</h3>
-            <p>
-              {t(lang, 'values.communication.description')}
-            </p>
+            <div class="card-icon">
+              <ChatsTeardrop class="icon" />
+            </div>
+            <h3 class="card-list-title">
+              {t(lang, 'values.communication.title')}
+            </h3>
+            <p>{t(lang, 'values.communication.description')}</p>
           </li>
+
           <li>
-            <div class="card-icon"><SpeakerHigh class="icon" /></div>
-            <h3 class="card-list-title">{t(lang, 'values.advocacy.title')}</h3>
-            <p>
-              {t(lang, 'values.advocacy.description')}
-            </p>
+            <div class="card-icon">
+              <SpeakerHigh class="icon" />
+            </div>
+            <h3 class="card-list-title">
+              {t(lang, 'values.advocacy.title')}
+            </h3>
+            <p>{t(lang, 'values.advocacy.description')}</p>
           </li>
+
           <li>
-            <div class="card-icon"><Handshake class="icon" /></div>
-            <h3 class="card-list-title">{t(lang, 'values.collaboration.title')}</h3>
-            <p>
-              {t(lang, 'values.collaboration.description')}
-            </p>
+            <div class="card-icon">
+              <Handshake class="icon" />
+            </div>
+            <h3 class="card-list-title">
+              {t(lang, 'values.collaboration.title')}
+            </h3>
+            <p>{t(lang, 'values.collaboration.description')}</p>
           </li>
+
           <li>
-            <div class="card-icon"><SealCheck class="icon" /></div>
-            <h3 class="card-list-title">{t(lang, 'values.oversight.title')}</h3>
-            <p>
-              {t(lang, 'values.oversight.description')}
-            </p>
+            <div class="card-icon">
+              <SealCheck class="icon" />
+            </div>
+            <h3 class="card-list-title">
+              {t(lang, 'values.oversight.title')}
+            </h3>
+            <p>{t(lang, 'values.oversight.description')}</p>
           </li>
         </ul>
       </div>
@@ -142,67 +207,139 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
   <!-- What we do -->
   <section class="section secondary what-we-do">
     <div class="inner-container">
-      <!-- Section Overview -->
       <div class="section-title">
-        <h2 class="pre-header">{t(lang, 'nav.whatWeDo')}</h2>
-        <p class="sub-header">
-          {t(lang, 'programs.heading')}
-        </p>
+       <h2 class="pre-header">
+         {lang === 'en'
+    ? home?.data.programsTag
+    : t(lang, 'nav.whatWeDo')}
+      </h2>
+
+      <p class="sub-header">
+        {lang === 'en'
+          ? home?.data.programsHeading
+          : t(lang, 'programs.heading')}
+      </p>
       </div>
 
-      <!-- Card List -->
       <div class="card-list">
         <ul>
           <li>
-            <Image src={WhatWeDo01} alt={t(lang, 'programs.cafa.imageAlt')} />
+            <Image
+              src={WhatWeDo01}
+              alt={t(lang, 'programs.cafa.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.cafa.title')}</h3>
-              <p>{t(lang, 'programs.cafa.description')}</p>
+             <h3 class="card-list-title">
+          {lang === 'en'
+            ? home?.data.cafaTitle
+            : t(lang, 'programs.cafa.title')}
+        </h3>
+
+        <p>
+          {lang === 'en'
+            ? home?.data.cafaDescription
+            : t(lang, 'programs.cafa.description')}
+        </p>
             </div>
           </li>
+
           <li>
-            <Image src={WhatWeDo02} alt={t(lang, 'programs.publicDefender.imageAlt')} />
+            <Image
+              src={WhatWeDo02}
+              alt={t(lang, 'programs.publicDefender.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.publicDefender.title')}</h3>
-              <p>
-                {t(lang, 'programs.publicDefender.description')}
-              </p>
+             <h3 class="card-list-title">
+          {lang === 'en'
+            ? home?.data.publicDefenderTitle
+            : t(lang, 'programs.publicDefender.title')}
+        </h3>
+
+        <p>
+          {lang === 'en'
+            ? home?.data.publicDefenderDescription
+            : t(lang, 'programs.publicDefender.description')}
+        </p>
             </div>
           </li>
+
           <li>
-            <Image src={WhatWeDo03} alt={t(lang, 'programs.policeOversight.imageAlt')} />
+            <Image
+              src={WhatWeDo03}
+              alt={t(lang, 'programs.policeOversight.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.policeOversight.title')}</h3>
-              <p>
-                {t(lang, 'programs.policeOversight.description')}
-              </p>
+             <h3 class="card-list-title">
+            {lang === 'en'
+              ? home?.data.policeOversightTitle
+              : t(lang, 'programs.policeOversight.title')}
+          </h3>
+
+          <p>
+            {lang === 'en'
+              ? home?.data.policeOversightDescription
+              : t(lang, 'programs.policeOversight.description')}
+          </p>
             </div>
           </li>
+
           <li>
-            <Image src={WhatWeDo04} alt={t(lang, 'programs.earlyCaseReview.imageAlt')} />
+            <Image
+              src={WhatWeDo04}
+              alt={t(lang, 'programs.earlyCaseReview.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.earlyCaseReview.title')}</h3>
-              <p>
-                {t(lang, 'programs.earlyCaseReview.description')}
-              </p>
+            <h3 class="card-list-title">
+  {lang === 'en'
+    ? home?.data.earlyCaseReviewTitle
+    : t(lang, 'programs.earlyCaseReview.title')}
+</h3>
+
+<p>
+  {lang === 'en'
+    ? home?.data.earlyCaseReviewDescription
+    : t(lang, 'programs.earlyCaseReview.description')}
+</p>
             </div>
           </li>
+
           <li>
-            <Image src={WhatWeDo05} alt={t(lang, 'programs.communityPower.imageAlt')} />
+            <Image
+              src={WhatWeDo05}
+              alt={t(lang, 'programs.communityPower.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.communityPower.title')}</h3>
-              <p>
-                {t(lang, 'programs.communityPower.description')}
-              </p>
+              <h3 class="card-list-title">
+  {lang === 'en'
+    ? home?.data.communityPowerTitle
+    : t(lang, 'programs.communityPower.title')}
+</h3>
+
+<p>
+  {lang === 'en'
+    ? home?.data.communityPowerDescription
+    : t(lang, 'programs.communityPower.description')}
+</p>
             </div>
           </li>
+
           <li>
-            <Image src={WhatWeDo06} alt={t(lang, 'programs.rightsEducation.imageAlt')} />
+            <Image
+              src={WhatWeDo06}
+              alt={t(lang, 'programs.rightsEducation.imageAlt')}
+            />
             <div class="card-list-content">
-              <h3 class="card-list-title">{t(lang, 'programs.rightsEducation.title')}</h3>
-              <p>
-                {t(lang, 'programs.rightsEducation.description')}
-              </p>
+ <h3 class="card-list-title">
+  {lang === 'en'
+    ? home?.data.rightsEducationTitle
+    : t(lang, 'programs.rightsEducation.title')}
+</h3>
+
+<p>
+  {lang === 'en'
+    ? home?.data.rightsEducationDescription
+    : t(lang, 'programs.rightsEducation.description')}
+</p>
             </div>
           </li>
         </ul>
@@ -214,28 +351,49 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
   <section class="section latest-news">
     <div class="inner-container">
       <div class="left">
-        <h2>{t(lang, 'news.heading')}</h2>
-        <p>{t(lang, 'news.description1')}</p>
-        <p>
-          {t(lang, 'news.description2')}
+        <h2>
+  {lang === 'en'
+    ? home?.data.newsHeading
+    : t(lang, 'news.heading')}
+</h2>
 
-          <mdc-buttonlink
-            size="40"
-            href={latestUpdates}
-            rel="noopener noreferrer"
-          >
-            {t(lang, 'news.cta')}
-          </mdc-buttonlink>
-        </p>
+<p>
+  {lang === 'en'
+    ? home?.data.newsDescription1
+    : t(lang, 'news.description1')}
+</p>
+
+<p>
+  {lang === 'en'
+    ? home?.data.newsDescription2
+    : t(lang, 'news.description2')}
+
+  <mdc-buttonlink
+    size="40"
+    href={latestUpdates}
+    rel="noopener noreferrer"
+  >
+    {lang === 'en'
+      ? home?.data.newsCta
+      : t(lang, 'news.cta')}
+  </mdc-buttonlink>
+</p>
       </div>
 
       <div class="right">
-        <Image src={LatestNews} alt={t(lang, 'news.iamgeAlt')} />
+      <Image
+  src={LatestNews}
+  alt={
+    lang === 'en'
+      ? home?.data.newsImageAlt
+      : t(lang, 'news.imageAlt')
+  }
+/>
       </div>
     </div>
   </section>
 
-  <!-- Contact / Get Invovled Form -->
+  <!-- Contact / Get Involved Form -->
   <section class="section secondary contact">
     <div class="inner-container">
       <div class="contact-home">
@@ -245,10 +403,3 @@ const latestUpdates = `${baseUrl}${lang === 'es' ? 'es/' : ''}latest-updates`;
     </div>
   </section>
 </Layout>
-
-<script>
-  // Import the components we need
-  import '@momentum-design/components/dist/components/text/index.js';
-  import '@momentum-design/components/dist/components/button/index.js';
-  import '@momentum-design/components/dist/components/card/index.js';
-</script>
