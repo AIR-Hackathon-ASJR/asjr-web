@@ -1,7 +1,7 @@
 ---
 title: Bob Batlan in the news
 posted: 2026-09-04T18:32:35.095Z
-summary: 'Our own Bob Batlan was mentioned in a recent news story about Michael Center and his road back from prison. '
+summary: Our own Bob Batlan was mentioned in a recent news story about Michael Center and his road back from prison.
 image: /Bob-Batlan.webp
 ---
 
