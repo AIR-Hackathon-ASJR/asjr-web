@@ -2,7 +2,7 @@
 title: Bob Batlan in the news
 posted: 2026-09-04T18:32:35.095Z
 summary: Our own Bob Batlan was mentioned in a recent news story about Michael Center and his road back from prison.
-image: /Bob-Batlan.webp
+image: /Bob-Batlan-for-web-j.jpg
 ---
 
 Our own Bob Batlan was mentioned in a recent news story about Michael Center and his road back from prison. Center was caught up in the nationwide academic scandal and convicted of fraud for his part as a coach for the Texas Longhorns Tennis team.
